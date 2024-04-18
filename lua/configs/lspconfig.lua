@@ -44,15 +44,6 @@ lspconfig.tsserver.setup {
       },
     },
   },
-  filetypes = {
-    "javascript",
-    "typescript",
-    "javascriptreact",
-    "typescriptreact",
-    "javascript.jsx",
-    "typescript.tsx",
-    "vue",
-  },
 }
 
 lspconfig.eslint.setup {

@@ -5,7 +5,7 @@
 local M = {}
 
 M.ui = {
-  theme = "chadracula-evondev",
+  theme = "tokyodark",
 
   nvdash = {
     load_on_startup = true,
@@ -16,5 +16,21 @@ M.ui = {
   -- 	["@comment"] = { italic = true },
   -- },
 }
+
+-- git
+require("neogit").setup {
+  integrations = {
+    diffview = true,
+    telescope = true,
+  },
+}
+require("diffview").setup {}
+
+-- ui
+require("trouble").setup {}
+require("ts-error-translator").setup {}
+
+-- misc
+require("hardtime").setup {}
 
 return M
