@@ -51,6 +51,7 @@ local plugins = {
         -- web-dev
         "html",
         "css",
+        "scss",
         "tsx",
         "vue",
         "xml",
