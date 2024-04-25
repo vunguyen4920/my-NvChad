@@ -9,55 +9,54 @@ map("i", "jk", "<ESC>")
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
+-- Harpoon
 local harpoon = require "harpoon"
 map("n", "<leader>a", function()
   harpoon:list():add()
-end)
-map("n", "<C-c>", function()
-  harpoon.ui:toggle_quick_menu(harpoon:list())
-end)
+end, { desc = "Add buffer to Harpoon" })
 
--- Toggle previous & next buffers stored within Harpoon list
-map("n", "<C-z>", function()
-  harpoon:list():prev()
-end)
-map("n", "<C-x>", function()
-  harpoon:list():next()
-end)
-
--- add yours here
-
-local map = vim.keymap.set
-
-map("n", ";", ":", { desc = "CMD enter command mode" })
-map("i", "jk", "<ESC>")
-
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
-
-local harpoon = require "harpoon"
-map("n", "<leader>a", function()
-  harpoon:list():add()
-end)
 map("n", "<C-e>", function()
   harpoon.ui:toggle_quick_menu(harpoon:list())
-end)
-map("n", "<C-1>", function()
-  harpoon:list():select(1)
-end)
-map("n", "<C-2>", function()
-  harpoon:list():select(2)
-end)
-map("n", "<C-3>", function()
-  harpoon:list():select(3)
-end)
-map("n", "<C-4>", function()
-  harpoon:list():select(4)
-end)
+end, { desc = "Harpoon Quick Menu" })
 
--- Toggle previous & next buffers stored within Harpoon list
 map("n", "<C-z>", function()
   harpoon:list():prev()
-end)
+end, { desc = "Harpoon cycle backward buffer" })
+
 map("n", "<C-x>", function()
   harpoon:list():next()
-end)
+end, { desc = "Harpoon cycle forward buffer" })
+
+-- Trouble.nvim
+map("n", "<leader>tr", function()
+  require("trouble").toggle()
+end, { desc = "Toggle trouble" })
+
+map("n", "<leader>trw", function()
+  require("trouble").toggle "workspace_diagnostics"
+end, { desc = "Toggle trouble workspace" })
+
+map("n", "<leader>trd", function()
+  require("trouble").toggle "document_diagnostics"
+end, { desc = "Toggle trouble document" })
+
+map("n", "<leader>trq", function()
+  require("trouble").toggle "quickfix"
+end, { desc = "Toggle trouble quickfix" })
+
+map("n", "<leader>trl", function()
+  require("trouble").toggle "loclist"
+end, { desc = "Toggle trouble loclist" })
+
+-- git
+map("n", "<leader>gg", function()
+  require("neogit").open()
+end, { desc = "Open Neogit" })
+
+map("n", "<leader>ggs", function()
+  require("neogit").open { kind = "split" }
+end, { desc = "Open Neogit in split" })
+
+map("n", "<leader>gc", function()
+  require("neogit").open { "commit" }
+end, { desc = "Open Neogit commit popup" })

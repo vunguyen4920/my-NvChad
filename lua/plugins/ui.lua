@@ -14,7 +14,6 @@ local plugins = {
     opts = {},
   },
   { "dmmulroy/ts-error-translator.nvim", opts = {} },
-  { "RRethy/vim-illuminate", opts = {} },
 }
 
 return plugins

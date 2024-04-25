@@ -5,16 +5,16 @@
 local M = {}
 
 M.ui = {
-  theme = "tokyodark",
+  theme = "gruvchad",
 
   nvdash = {
     load_on_startup = true,
   },
 
-  -- hl_override = {
-  -- 	Comment = { italic = true },
-  -- 	["@comment"] = { italic = true },
-  -- },
+  hl_override = {
+    Comment = { italic = true },
+    ["@comment"] = { italic = true },
+  },
 }
 
 -- git
