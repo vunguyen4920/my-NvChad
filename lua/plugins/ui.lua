@@ -6,6 +6,9 @@ local plugins = {
       -- your configuration comes here
       -- or leave it empty to use the default settings
     },
+    config = function()
+      require("trouble").setup {}
+    end,
   },
   {
     "ThePrimeagen/harpoon",
@@ -13,7 +16,13 @@ local plugins = {
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
   },
-  { "dmmulroy/ts-error-translator.nvim", opts = {} },
+  {
+    "dmmulroy/ts-error-translator.nvim",
+    opts = {},
+    config = function()
+      require("ts-error-translator").setup {}
+    end,
+  },
 }
 
 return plugins
