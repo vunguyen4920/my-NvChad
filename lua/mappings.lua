@@ -60,3 +60,8 @@ end, { desc = "Open Neogit in split" })
 map("n", "<leader>gc", function()
   require("neogit").open { "commit" }
 end, { desc = "Open Neogit commit popup" })
+
+-- Linter
+map("n", "<leader>ll", function()
+  require("lint").try_lint()
+end, { desc = "Trigger linting for current file" })
