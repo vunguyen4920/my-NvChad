@@ -10,6 +10,7 @@
 - GCC, Windows users must have mingw installed and set on path.
 - Make, Windows users must have GnuWin32 installed and set on path.
 - Delete old neovim folders (check commands below)
+- Win32yank, for clipboard
 
 ## Installation
 
