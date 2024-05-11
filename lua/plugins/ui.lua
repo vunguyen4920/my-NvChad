@@ -2,10 +2,7 @@ local plugins = {
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-    },
+    opts = {},
     config = function()
       require("trouble").setup {}
     end,
@@ -21,6 +18,14 @@ local plugins = {
     opts = {},
     config = function()
       require("ts-error-translator").setup {}
+    end,
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
     end,
   },
 }

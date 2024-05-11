@@ -44,7 +44,7 @@ local in_wsl = os.getenv "WSL_DISTRO_NAME" ~= nil
 if in_wsl then
   vim.g.clipboard = {
     name = "wsl clipboard",
-    copy = { ["+"] = { "clip.exe" }, ["*"] = { "clip.exe" } },
+    copy = { ["+"] = { "win32yank.exe -i" }, ["*"] = { "win32yank.exe -i" } },
     paste = {
       ["+"] = "win32yank.exe -o --lf",
       ["*"] = "win32yank.exe -o --lf",

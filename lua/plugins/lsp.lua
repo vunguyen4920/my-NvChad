@@ -39,6 +39,28 @@ local plugins = {
     },
   },
   {
+    "stevearc/conform.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require "configs.conform"
+    end,
+  },
+  {
+    "zapling/mason-conform.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    lazy = true,
+    event = "VeryLazy",
+    opts = {
+      ensure_installed = {
+        -- defaults
+        "stylua",
+
+        -- web-dev
+        "prettier",
+      },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     config = function()
       require("nvchad.configs.lspconfig").defaults()
@@ -47,29 +69,12 @@ local plugins = {
   },
   {
     "mfussenegger/nvim-lint",
-    event = { "BufReadPre", "BufWritePre", "BufNewFile" },
+    event = {
+      "BufReadPre",
+      "BufNewFile",
+    },
     config = function()
-      local lint = require "lint"
-
-      lint.linters_by_ft = {
-        javascript = { "eslint_d" },
-        typescript = { "eslint_d" },
-        javascriptreact = { "eslint_d" },
-        typescriptreact = { "eslint_d" },
-        svelte = { "eslint_d" },
-        vue = { "eslint_d" },
-        lua = { "selene" },
-        luau = { "selene" },
-      }
-
-      local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-
-      vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-        group = lint_augroup,
-        callback = function()
-          lint.try_lint()
-        end,
-      })
+      require "configs.lint"
     end,
   },
   {
@@ -135,28 +140,6 @@ local plugins = {
         "gitattributes",
         "gitcommit",
         "gitignore",
-      },
-    },
-  },
-  {
-    "stevearc/conform.nvim",
-    event = { "BufWritePre", "BufReadPre", "BufNewFile" },
-    config = function()
-      require "configs.conform"
-    end,
-  },
-  {
-    "zapling/mason-conform.nvim",
-    dependencies = { "williamboman/mason.nvim" },
-    lazy = true,
-    event = "VeryLazy",
-    opts = {
-      ensure_installed = {
-        -- defaults
-        "stylua",
-
-        -- web-dev
-        "eslint_d",
       },
     },
   },

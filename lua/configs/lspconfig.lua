@@ -28,7 +28,40 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-lspconfig.volar.setup {}
+lspconfig.eslint.setup {
+  on_init = on_init,
+  capabilities = capabilities,
+  on_attach = function(_, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
+  settings = {
+    workingDirectories = { mode = "auto" },
+  },
+}
+
+local mason_registry = require "mason-registry"
+local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+  .. "/node_modules/@vue/language-server"
+
+lspconfig.volar.setup {
+  init_options = {
+    vue = {
+      hybridMode = false,
+    },
+  },
+}
+
+local function ts_organize_imports()
+  local params = {
+    command = "_typescript.organizeImports",
+    arguments = { vim.api.nvim_buf_get_name(0) },
+    title = "",
+  }
+  vim.lsp.buf.execute_command(params)
+end
 
 -- typescript
 lspconfig.tsserver.setup {
@@ -39,20 +72,15 @@ lspconfig.tsserver.setup {
     plugins = {
       {
         name = "@vue/typescript-plugin",
-        location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
-        languages = { "javascript", "typescript", "vue" },
+        location = vue_language_server_path,
+        languages = { "vue" },
       },
     },
   },
-}
-
-lspconfig.eslint.setup {
-  on_init = on_init,
-  capabilities = capabilities,
-  on_attach = function(_, bufnr)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "EslintFixAll",
-    })
-  end,
+  commands = {
+    OrganizeImports = {
+      ts_organize_imports,
+      description = "Organize Imports",
+    },
+  },
 }
