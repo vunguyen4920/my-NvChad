@@ -14,19 +14,28 @@ local plugins = {
     opts = {},
   },
   {
-    "dmmulroy/ts-error-translator.nvim",
-    opts = {},
-    config = function()
-      require("ts-error-translator").setup {}
-    end,
-  },
-  {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
     build = function()
       vim.fn["mkdp#util#install"]()
     end,
+  },
+  {
+    "stevearc/dressing.nvim",
+    opts = {},
+  },
+  {
+    "NvChad/nvim-colorizer.lua",
+    opts = {},
+    config = function()
+      require "configs.colorizer"
+    end,
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
   },
 }
 
