@@ -97,3 +97,8 @@ require("gitsigns").setup {
 map("n", "<leader>ll", function()
   require("lint").try_lint()
 end, { desc = "Trigger linting for current file" })
+
+-- Zen
+map("n", "<leader>z", function()
+  require("zen-mode").toggle()
+end, { desc = "Toggle Zen Mode" })

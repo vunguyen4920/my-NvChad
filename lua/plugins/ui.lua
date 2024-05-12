@@ -22,10 +22,6 @@ local plugins = {
     end,
   },
   {
-    "stevearc/dressing.nvim",
-    opts = {},
-  },
-  {
     "NvChad/nvim-colorizer.lua",
     opts = {},
     config = function()
@@ -35,6 +31,14 @@ local plugins = {
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+  {
+    "folke/zen-mode.nvim",
+    opts = {},
+  },
+  {
+    "folke/twilight.nvim",
     opts = {},
   },
 }

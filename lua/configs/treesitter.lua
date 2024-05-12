@@ -1,4 +1,4 @@
-local opts = {
+local options = {
   autotag = {
     enable = true,
     enable_rename = true,
@@ -53,4 +53,4 @@ local opts = {
   indent = { enable = true },
 }
 
-return opts
+return options
