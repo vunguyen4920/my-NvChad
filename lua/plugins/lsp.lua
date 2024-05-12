@@ -108,7 +108,7 @@ local plugins = {
         underline = true,
         virtual_text = {
           spacing = 5,
-          severity = vim.diagnostic.severity.WARN,
+          severity = { min = vim.diagnostic.severity.WARN },
         },
         update_in_insert = true,
       })
