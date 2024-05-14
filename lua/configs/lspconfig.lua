@@ -31,12 +31,7 @@ end
 lspconfig.eslint.setup {
   on_init = on_init,
   capabilities = capabilities,
-  on_attach = function(_, bufnr)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "EslintFixAll",
-    })
-  end,
+  on_attach = on_attach,
   settings = {
     workingDirectories = { mode = "auto" },
   },
@@ -46,13 +41,7 @@ local mason_registry = require "mason-registry"
 local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
   .. "/node_modules/@vue/language-server"
 
-lspconfig.volar.setup {
-  init_options = {
-    vue = {
-      hybridMode = false,
-    },
-  },
-}
+lspconfig.volar.setup {}
 
 local function ts_organize_imports()
   local params = {
@@ -82,5 +71,14 @@ lspconfig.tsserver.setup {
       ts_organize_imports,
       description = "Organize Imports",
     },
+  },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+    "vue",
   },
 }

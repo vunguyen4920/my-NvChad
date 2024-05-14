@@ -57,6 +57,7 @@ local plugins = {
 
         -- web-dev
         "prettier",
+        "prettierd",
       },
     },
   },

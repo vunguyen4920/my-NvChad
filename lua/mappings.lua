@@ -102,3 +102,7 @@ end, { desc = "Trigger linting for current file" })
 map("n", "<leader>z", function()
   require("zen-mode").toggle()
 end, { desc = "Toggle Zen Mode" })
+
+-- Formatter
+map("n", "<leader>fme", ":FormatEnable<CR>")
+map("n", "<leader>fmd", ":FormatDisable<CR>")
