@@ -106,3 +106,18 @@ end, { desc = "Toggle Zen Mode" })
 -- Formatter
 map("n", "<leader>fme", ":FormatEnable<CR>")
 map("n", "<leader>fmd", ":FormatDisable<CR>")
+
+-- TODO:
+-- WARN:
+-- FIX:
+-- HACK:
+-- PERF:
+-- NOTE:
+-- TEST:
+map("n", "]t", function()
+  require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+map("n", "[t", function()
+  require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
