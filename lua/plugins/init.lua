@@ -8,4 +8,23 @@ return {
       require("hardtime").setup {}
     end,
   },
+  {
+    "folke/neodev.nvim",
+    opts = {},
+    config = function()
+      require("neodev").setup {
+        library = { plugins = { "nvim-dap-ui" }, types = true },
+      }
+    end,
+  },
+  {
+    "alanfortlink/blackjack.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    opts = {},
+    config = function()
+      require("blackjack").setup()
+    end,
+    lazy = true,
+    event = "VeryLazy",
+  },
 }

@@ -7,6 +7,7 @@ local options = {
   },
   ensure_installed = {
     -- defaults
+    "vimdoc",
     "vim",
     "lua",
 

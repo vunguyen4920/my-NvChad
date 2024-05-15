@@ -121,3 +121,7 @@ end, { desc = "Next todo comment" })
 map("n", "[t", function()
   require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
+
+-- BlackJack
+map("n", "<leader>bj", ":BlackJackNewGame<CR>")
+map("n", "<leader>bjr", ":BlackJackResetScores<CR>")

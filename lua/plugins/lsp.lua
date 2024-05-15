@@ -1,3 +1,4 @@
+-- TODO: test markdown formatter
 -- These are some examples, uncomment them if you want to see them work!
 local plugins = {
   {
@@ -39,6 +40,13 @@ local plugins = {
     },
   },
   {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("nvchad.configs.lspconfig").defaults()
+      require "configs.lspconfig"
+    end,
+  },
+  {
     "stevearc/conform.nvim",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
@@ -55,18 +63,14 @@ local plugins = {
         -- defaults
         "stylua",
 
+        -- documentation
+        "remark-cli",
+
         -- web-dev
         "prettier",
         "prettierd",
       },
     },
-  },
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require("nvchad.configs.lspconfig").defaults()
-      require "configs.lspconfig"
-    end,
   },
   {
     "mfussenegger/nvim-lint",
@@ -94,28 +98,38 @@ local plugins = {
     },
   },
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function()
-      return require "configs.treesitter"
+    "mfussenegger/nvim-dap",
+    opts = {},
+    config = function()
+      require "configs.dap"
     end,
   },
   {
-    "windwp/nvim-ts-autotag",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require("nvim-ts-autotag").setup {}
-
-      vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        underline = true,
-        virtual_text = {
-          spacing = 5,
-          severity = { min = vim.diagnostic.severity.WARN },
-        },
-        update_in_insert = true,
-      })
-    end,
+    "jay-babu/mason-nvim-dap.nvim",
+    dependencies = { "williamboman/mason.nvim" },
     lazy = true,
     event = "VeryLazy",
+    opts = {
+      ensure_installed = {
+        -- defaults
+
+        -- web-dev
+        "chrome",
+        "firefox",
+
+        -- general
+        "js",
+      },
+    },
+  },
+  { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
+  { "theHamsta/nvim-dap-virtual-text", dependencies = { "mfussenegger/nvim-dap" } },
+  {
+    "nvim-telescope/telescope-dap.nvim",
+    dependencies = { "mfussenegger/nvim-dap" },
+    config = function()
+      require("telescope").load_extension "dap"
+    end,
   },
   {
     "dmmulroy/ts-error-translator.nvim",
