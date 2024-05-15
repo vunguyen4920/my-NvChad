@@ -32,9 +32,6 @@ local plugins = {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
-    config = function()
-      require("todo-comments").setup()
-    end,
   },
   {
     "folke/zen-mode.nvim",

@@ -7,6 +7,7 @@ lint.linters_by_ft = {
   typescriptreact = { "eslint_d" },
   svelte = { "eslint_d" },
   vue = { "eslint_d" },
+  markdown = { "markdownlint" },
   lua = { "selene" },
   luau = { "selene" },
 }

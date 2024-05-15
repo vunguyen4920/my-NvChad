@@ -1,5 +1,3 @@
--- TODO: test markdown formatter
--- These are some examples, uncomment them if you want to see them work!
 local plugins = {
   {
     "williamboman/mason.nvim",
@@ -64,7 +62,7 @@ local plugins = {
         "stylua",
 
         -- documentation
-        "remark-cli",
+        "markdownlint",
 
         -- web-dev
         "prettier",
@@ -91,6 +89,9 @@ local plugins = {
       ensure_installed = {
         -- defaults
         "selene",
+
+        -- documentation
+        "markdownlint",
 
         -- web-dev
         "eslint_d",
