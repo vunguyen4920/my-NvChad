@@ -11,26 +11,10 @@
 - Make, Windows users must have GnuWin32 installed and set on path.
 - Delete old neovim folders (check commands below)
 - Win32yank, for clipboard
-- python
-- pip
 
 ## Installation
 
 ### AI
-
-```bash
-
-export GEMINI_API_KEY="<your API key here>"
-
-```
-
-if working with code with proprietary license, might want to turn function hints off
-
-```bash
-
-export DISABLE_GEMINI_INLINE=1
-
-```
 
 ### Linux
 

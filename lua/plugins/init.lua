@@ -22,7 +22,9 @@ return {
     requires = { "nvim-lua/plenary.nvim" },
     opts = {},
     config = function()
-      require("blackjack").setup()
+      require("blackjack").setup {
+        card_style = "large",
+      }
     end,
     lazy = true,
     event = "VeryLazy",
