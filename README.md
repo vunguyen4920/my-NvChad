@@ -11,10 +11,10 @@
 - Make, Windows users must have GnuWin32 installed and set on path.
 - Delete old neovim folders (check commands below)
 - Win32yank, for clipboard
+- git
+- Codeium for code completion
 
 ## Installation
-
-### AI
 
 ### Linux
 

@@ -44,5 +44,5 @@ end, {
 
 require("conform").setup(options)
 require("conform").formatters.eslint_d = {
-  prepend_args = { "--no-warn-ignored", "--stdin", "--fix-to-stdout", "--stdin-filename", "$FILENAME", "--cache" },
+  prepend_args = { "--stdin", "--fix-to-stdout", "--stdin-filename", "$FILENAME", "--cache" },
 }

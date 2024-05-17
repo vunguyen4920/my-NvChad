@@ -4,9 +4,6 @@ return {
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     opts = {},
     lazy = false,
-    config = function()
-      require("hardtime").setup {}
-    end,
   },
   {
     "folke/neodev.nvim",
@@ -16,17 +13,5 @@ return {
         library = { plugins = { "nvim-dap-ui" }, types = true },
       }
     end,
-  },
-  {
-    "alanfortlink/blackjack.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    opts = {},
-    config = function()
-      require("blackjack").setup {
-        card_style = "large",
-      }
-    end,
-    lazy = true,
-    event = "VeryLazy",
   },
 }

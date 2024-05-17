@@ -130,44 +130,41 @@ map("n", "<leader>bjr", ":BlackJackResetScores<CR>", { desc = "Reset BlackJack S
 map("n", "<leader>mp", ":MarkdownPreviewToggle<CR>", { desc = "Preview Markdown" })
 
 -- DAP
-map("n", "<F5>", function()
+map("n", "<leader>ds", function()
+  require("dap").continue()
+  require("dapui").toggle {}
+end, { desc = "DAP Start" })
+map("n", "<leader>dc", function()
   require("dap").continue()
 end, { desc = "DAP Continue" })
-map("n", "<F10>", function()
+
+map("n", "<leader>do", function()
   require("dap").step_over()
 end, { desc = "DAP Step Over" })
-map("n", "<F11>", function()
+
+map("n", "<leader>di", function()
   require("dap").step_into()
 end, { desc = "DAP Step Into" })
-map("n", "<F12>", function()
+
+map("n", "<leader>du", function()
   require("dap").step_out()
 end, { desc = "DAP Step Out" })
-map("n", "<Leader>br", function()
+
+map("n", "<leader>db", function()
   require("dap").toggle_breakpoint()
-end, { desc = "Toggle breakpoint" })
-map("n", "<Leader>Br", function()
-  require("dap").set_breakpoint()
-end, { desc = "Set breakpoint" })
-map("n", "<Leader>dlp", function()
+end, { desc = "Toggle Debug breakpoint" })
+
+map("n", "<leader>dB", function()
   require("dap").set_breakpoint(nil, nil, vim.fn.input "Log point message: ")
-end)
-map("n", "<Leader>dr", function()
-  require("dap").repl.open()
-end)
-map("n", "<Leader>dl", function()
-  require("dap").run_last()
-end)
-map({ "n", "v" }, "<Leader>dh", function()
-  require("dap.ui.widgets").hover()
-end)
-map({ "n", "v" }, "<Leader>dp", function()
-  require("dap.ui.widgets").preview()
-end)
-map("n", "<Leader>df", function()
-  local widgets = require "dap.ui.widgets"
-  widgets.centered_float(widgets.frames)
-end)
-map("n", "<Leader>ds", function()
-  local widgets = require "dap.ui.widgets"
-  widgets.centered_float(widgets.scopes)
-end)
+end, { desc = "Set Debug breakpoint with message" })
+
+map("n", "<leader>de", function()
+  require("dap").clear_breakpoints()
+  require("dapui").toggle {}
+  require("dap").terminate()
+end, { desc = "DAP end" })
+
+-- AI
+map("i", "<A-;>", function()
+  return vim.fn["codeium#Accept"]()
+end, { expr = true, silent = true })
