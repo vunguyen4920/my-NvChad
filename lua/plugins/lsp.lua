@@ -116,7 +116,6 @@ local plugins = {
         -- defaults
 
         -- web-dev
-        "chrome",
         "firefox",
 
         -- general
