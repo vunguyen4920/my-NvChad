@@ -40,18 +40,18 @@ local plugins = {
       require("nvim_context_vt").setup()
     end,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    lazy = true,
-    event = "VeryLazy",
+    event = "BufEnter",
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
     opts = {},
     config = function()
-      require("treesitter-context").setup()
+      require("treesitter-context").setup {
+        multiline_threshold = 3,
+      }
     end,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    lazy = true,
-    event = "VeryLazy",
+    event = "BufEnter",
   },
   {
     "roobert/tailwindcss-colorizer-cmp.nvim",

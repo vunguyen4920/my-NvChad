@@ -31,6 +31,7 @@ local plugins = {
 
         -- general purpose
         "tsserver",
+        "taplo",
 
         -- devops
         "dockerls",

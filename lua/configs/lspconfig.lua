@@ -21,6 +21,7 @@ local servers = {
   "graphql",
   "marksman",
   "dockerls",
+  "taplo",
 }
 
 -- lsps with default config
