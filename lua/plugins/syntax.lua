@@ -2,7 +2,7 @@ local plugins = {
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
+    event = "BufEnter",
     config = function()
       require("nvim-surround").setup {
         -- Configuration here, or leave empty to use defaults
@@ -19,7 +19,11 @@ local plugins = {
     "windwp/nvim-ts-autotag",
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
-      require("nvim-ts-autotag").setup {}
+      require("nvim-ts-autotag").setup {
+        enable_close = true, -- Auto close tags
+        enable_rename = true, -- Auto rename pairs of tags
+        enable_close_on_slash = true, -- Auto close on trailing </
+      }
 
       vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         underline = true,
@@ -30,8 +34,7 @@ local plugins = {
         update_in_insert = true,
       })
     end,
-    lazy = true,
-    event = "VeryLazy",
+    event = "BufEnter",
   },
   {
     "andersevenrud/nvim_context_vt",
@@ -40,7 +43,8 @@ local plugins = {
       require("nvim_context_vt").setup()
     end,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = "BufEnter",
+    lazy = true,
+    event = "VeryLazy",
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
