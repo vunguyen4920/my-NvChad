@@ -16,11 +16,15 @@ local plugins = {
         -- web-dev
         "html",
         "cssls",
+        "css_variables",
+        "cssmodules_ls",
+        "emmet_ls",
         "eslint",
         "volar",
         "lemminx",
         "yamlls",
         "jsonls",
+        "tailwindcss",
 
         -- db
         "prismals",
