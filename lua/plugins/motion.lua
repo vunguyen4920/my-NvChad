@@ -1,7 +1,7 @@
 local plugins = {
   {
     "smoka7/multicursors.nvim",
-    event = "VeryLazy",
+    event = "BufEnter",
     dependencies = {
       "smoka7/hydra.nvim",
     },
@@ -18,7 +18,7 @@ local plugins = {
   },
   {
     "folke/flash.nvim",
-    event = "VeryLazy",
+    event = "BufEnter",
     ---@type Flash.Config
     opts = {
       modes = {
