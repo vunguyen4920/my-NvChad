@@ -116,15 +116,11 @@ map("n", "<leader>fmd", ":FormatDisable<CR>")
 -- TEST:
 map("n", "]t", function()
   require("todo-comments").jump_next()
-end, { desc = "Next todo comment" })
+end, { desc = "Todo Jump next" })
 
 map("n", "[t", function()
   require("todo-comments").jump_prev()
-end, { desc = "Previous todo comment" })
-
--- BlackJack
-map("n", "<leader>bj", ":BlackJackNewGame<CR>", { desc = "New BlackJack Game" })
-map("n", "<leader>bjr", ":BlackJackResetScores<CR>", { desc = "Reset BlackJack Scores" })
+end, { desc = "Todo Jump previous" })
 
 -- Markdown Preview
 map("n", "<leader>mp", ":MarkdownPreviewToggle<CR>", { desc = "Preview Markdown" })
