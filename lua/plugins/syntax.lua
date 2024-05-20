@@ -20,9 +20,11 @@ local plugins = {
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
       require("nvim-ts-autotag").setup {
-        enable_close = true, -- Auto close tags
-        enable_rename = true, -- Auto rename pairs of tags
-        enable_close_on_slash = true, -- Auto close on trailing </
+        opts = {
+          enable_close = true, -- Auto close tags
+          enable_rename = true, -- Auto rename pairs of tags
+          enable_close_on_slash = true, -- Auto close on trailing </
+        },
       }
 
       vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -43,8 +45,7 @@ local plugins = {
       require("nvim_context_vt").setup()
     end,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    lazy = true,
-    event = "VeryLazy",
+    event = "BufReadPost",
   },
   {
     "nvim-treesitter/nvim-treesitter-context",

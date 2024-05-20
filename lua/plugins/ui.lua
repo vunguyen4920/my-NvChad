@@ -68,9 +68,9 @@ local plugins = {
     opts = {},
     config = function()
       require("ufo").setup {
-        -- provider_selector = function()
-        --   return { "treesitter", "indent" }
-        -- end,
+        provider_selector = function()
+          return { "treesitter", "indent" }
+        end,
         close_fold_kinds_for_ft = {
           default = { "imports", "comment" },
         },
