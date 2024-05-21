@@ -67,6 +67,33 @@ local plugins = {
       }
     end,
   },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    opts = {},
+    config = function()
+      vim.g.skip_ts_context_commentstring_module = true
+    end,
+    event = "BufReadPre",
+  },
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      local prehook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
+      require("Comment").setup {
+        padding = true,
+        sticky = true,
+        ignore = "^$",
+        pre_hook = prehook,
+        post_hook = nil,
+      }
+    end,
+    event = "BufReadPre",
+    lazy = false,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+  },
 }
 
 return plugins
