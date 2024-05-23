@@ -152,6 +152,24 @@ local plugins = {
     config = function()
       require("refactoring").setup()
     end,
+    event = "BufReadPre",
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {},
+    config = function()
+      require("trouble").setup {}
+    end,
+    event = "BufReadPre",
+  },
+  {
+    "zeioth/garbage-day.nvim",
+    dependencies = "neovim/nvim-lspconfig",
+    event = "VeryLazy",
+    opts = {
+      aggressive_mode = true,
+    },
   },
 }
 

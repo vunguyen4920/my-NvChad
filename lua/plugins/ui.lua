@@ -1,13 +1,5 @@
 local plugins = {
   {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {},
-    config = function()
-      require("trouble").setup {}
-    end,
-  },
-  {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },

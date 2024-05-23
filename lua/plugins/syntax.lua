@@ -2,7 +2,7 @@ local plugins = {
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "BufEnter",
+    event = "BufReadPre",
     config = function()
       require("nvim-surround").setup {
         -- Configuration here, or leave empty to use defaults
@@ -36,7 +36,7 @@ local plugins = {
         update_in_insert = true,
       })
     end,
-    event = "BufEnter",
+    event = "BufReadPre",
   },
   {
     "andersevenrud/nvim_context_vt",
@@ -56,7 +56,7 @@ local plugins = {
       }
     end,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = "BufEnter",
+    event = "BufReadPost",
   },
   {
     "roobert/tailwindcss-colorizer-cmp.nvim",
