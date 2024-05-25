@@ -3,6 +3,8 @@ local plugins = {
     "williamboman/mason.nvim",
     opts = {},
   },
+  { "mfussenegger/nvim-jdtls" },
+  { "b0o/schemastore.nvim" },
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim" },
@@ -25,6 +27,7 @@ local plugins = {
         "yamlls",
         "jsonls",
         "tailwindcss",
+        "somesass_ls",
 
         -- db
         "prismals",
@@ -34,16 +37,21 @@ local plugins = {
         "marksman",
 
         -- general purpose
+        "jdtls",
+        "kotlin_language_server",
         "tsserver",
         "taplo",
 
         -- devops
         "dockerls",
+        "docker_compose_language_service",
+        "gradle_ls",
       },
     },
   },
   {
     "neovim/nvim-lspconfig",
+    dependencies = { "mfussenegger/nvim-jdtls", "b0o/schemastore.nvim" },
     config = function()
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"

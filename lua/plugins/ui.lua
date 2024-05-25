@@ -44,6 +44,12 @@ local plugins = {
       }
     end,
   },
+  {
+    "j-hui/fidget.nvim",
+    opts = function()
+      return require "configs.fidget"
+    end,
+  },
 }
 
 return plugins

@@ -22,6 +22,8 @@ local servers = {
   "marksman",
   "dockerls",
   "taplo",
+  "jdtls",
+  "kotlin_language_server",
 }
 
 -- lsps with default config
@@ -85,5 +87,37 @@ lspconfig.tsserver.setup {
     "typescriptreact",
     "typescript.tsx",
     "vue",
+  },
+}
+
+-- json
+lspconfig.jsonls.setup {
+  on_init = on_init,
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    json = {
+      schemas = require("schemastore").json.schemas(),
+      validate = { enable = true },
+    },
+  },
+}
+
+-- yaml
+lspconfig.yamlls.setup {
+  on_init = on_init,
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    yaml = {
+      schemaStore = {
+        -- You must disable built-in schemaStore support if you want to use
+        -- this plugin and its advanced options like `ignore`.
+        enable = false,
+        -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+        url = "",
+      },
+      schemas = require("schemastore").yaml.schemas(),
+    },
   },
 }

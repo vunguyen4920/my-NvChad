@@ -31,9 +31,12 @@ local options = {
     "regex",
     "javascript",
     "typescript",
+    "java",
+    "kotlin",
 
     -- devops
     "dockerfile",
+    "groovy",
 
     -- git
     "gitattributes",
