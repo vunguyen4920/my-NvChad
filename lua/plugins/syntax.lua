@@ -48,15 +48,12 @@ local plugins = {
     event = "BufReadPost",
   },
   {
-    "nvim-treesitter/nvim-treesitter-context",
+    "JoosepAlviste/nvim-ts-context-commentstring",
     opts = {},
     config = function()
-      require("treesitter-context").setup {
-        multiline_threshold = 3,
-      }
+      vim.g.skip_ts_context_commentstring_module = true
     end,
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = "BufReadPost",
+    event = "BufReadPre",
   },
   {
     "roobert/tailwindcss-colorizer-cmp.nvim",
@@ -67,14 +64,7 @@ local plugins = {
       }
     end,
   },
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    opts = {},
-    config = function()
-      vim.g.skip_ts_context_commentstring_module = true
-    end,
-    event = "BufReadPre",
-  },
+
   {
     "numToStr/Comment.nvim",
     config = function()
