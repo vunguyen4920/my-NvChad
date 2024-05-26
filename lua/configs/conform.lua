@@ -14,6 +14,7 @@ local options = {
     xml = { { "prettierd", "prettier" }, "eslint_d" },
     yaml = { { "prettierd", "prettier" }, "eslint_d" },
     lua = { "stylua" },
+    java = { "google-java-format" },
   },
 
   format_on_save = {

@@ -180,7 +180,7 @@ map({ "n", "x", "o" }, "s", function()
   require("flash").jump()
 end, { desc = "Flash" })
 
-map({ "n", "x", "o" }, "s", function()
+map({ "n", "x", "o" }, "sf", function()
   require("flash").treesitter()
 end, { desc = "Flash Treesitter" })
 
@@ -195,4 +195,4 @@ map(
 -- Games
 map({ "n" }, "<leader>pgc", function()
   require("playtime").setup()
-end, { desc = "Games Tetris" })
+end, { desc = "Games Play Card Games" })

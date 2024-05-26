@@ -80,6 +80,9 @@ local plugins = {
         -- web-dev
         "prettier",
         "prettierd",
+
+        -- general
+        "google-java-format",
       },
     },
   },
@@ -108,6 +111,9 @@ local plugins = {
 
         -- web-dev
         "eslint_d",
+
+        -- general
+        "checkstyle",
       },
     },
   },

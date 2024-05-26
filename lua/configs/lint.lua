@@ -10,6 +10,7 @@ lint.linters_by_ft = {
   markdown = { "markdownlint" },
   lua = { "selene" },
   luau = { "selene" },
+  java = { "checkstyle" },
 }
 
 lint.linters.eslint_d.args = {
