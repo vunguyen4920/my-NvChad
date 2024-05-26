@@ -83,6 +83,7 @@ local plugins = {
 
         -- general
         "google-java-format",
+        "ktlint",
       },
     },
   },
@@ -114,6 +115,7 @@ local plugins = {
 
         -- general
         "checkstyle",
+        "ktlint",
       },
     },
   },

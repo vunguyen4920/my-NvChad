@@ -36,15 +36,6 @@ local plugins = {
     event = "VeryLazy",
   },
   {
-    "karb94/neoscroll.nvim",
-    event = "BufReadPre",
-    config = function()
-      require("neoscroll").setup {
-        easing_function = "sine",
-      }
-    end,
-  },
-  {
     "j-hui/fidget.nvim",
     opts = function()
       return require "configs.fidget"

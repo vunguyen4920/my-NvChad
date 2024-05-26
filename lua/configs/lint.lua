@@ -11,6 +11,7 @@ lint.linters_by_ft = {
   lua = { "selene" },
   luau = { "selene" },
   java = { "checkstyle" },
+  kotlin = { "ktlint" },
 }
 
 lint.linters.eslint_d.args = {

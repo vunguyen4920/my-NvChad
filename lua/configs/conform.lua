@@ -15,6 +15,7 @@ local options = {
     yaml = { { "prettierd", "prettier" }, "eslint_d" },
     lua = { "stylua" },
     java = { "google-java-format" },
+    kotlin = { "ktlint" },
   },
 
   format_on_save = {
