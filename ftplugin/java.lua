@@ -19,7 +19,7 @@ else
   os = "linux"
 end
 
-local jdtls_path = mason_registry.get_package("jdtls"):get_install_path()
+local jdtls_install_path = mason_registry.get_package("jdtls"):get_install_path()
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
@@ -32,16 +32,19 @@ local config = {
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
     "-Dlog.protocol=true",
     "-Dlog.level=ALL",
-    "-javaagent:" .. jdtls_path .. "/lombok.jar",
+    "-javaagent:" .. jdtls_install_path .. "/lombok.jar",
     "-Xmx1g",
     "--add-modules=ALL-SYSTEM",
-    "--add-opens=java.base/java.util=ALL-UNNAMED",
-    "--add-opens=java.base/java.lang=ALL-UNNAMED",
+    "--add-opens",
+    "java.base/java.util=ALL-UNNAMED",
+    "--add-opens",
+    "java.base/java.lang=ALL-UNNAMED",
     "-jar",
-    vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+    vim.fn.glob(jdtls_install_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
     "-configuration",
-    jdtls_path .. "/config_" .. os,
-    "-data=" .. workspace_dir,
+    jdtls_install_path .. "/config_" .. os,
+    "-data",
+    workspace_dir,
   },
 
   -- 💀

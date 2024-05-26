@@ -1,4 +1,3 @@
--- TODO: Test the debug plugins
 local dap = require "dap"
 local ui = require "dapui"
 local mason_registry = require "mason-registry"

@@ -50,6 +50,14 @@ local plugins = {
       return require "configs.fidget"
     end,
   },
+  -- TODO: Test this color plugin
+  {
+    "max397574/colortils.nvim",
+    cmd = "Colortils",
+    config = function()
+      require("colortils").setup()
+    end,
+  },
 }
 
 return plugins

@@ -4,6 +4,8 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
+map("n", "<leader>me", "<cmd>set mouse=a<CR>", { desc = "Mouse Enable" })
+map("n", "<leader>md", "<cmd>set mouse=<CR>", { desc = "Mouse Disable" })
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map("i", "jj", "<ESC>")
@@ -122,8 +124,10 @@ map("n", "[t", function()
   require("todo-comments").jump_prev()
 end, { desc = "Todo Jump previous" })
 
+map("n", "<leader>tot", "<cmd>Telescope todo-comments todo<CR>", { desc = "Todo Telescope" })
+
 -- Markdown Preview
-map("n", "<leader>mp", ":MarkdownPreviewToggle<CR>", { desc = "Preview Markdown" })
+map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Preview Markdown" })
 
 -- DAP
 map("n", "<leader>ds", function()
@@ -164,3 +168,31 @@ end, { desc = "DAP end" })
 map("i", "<A-;>", function()
   return vim.fn["codeium#Accept"]()
 end, { expr = true, silent = true })
+
+-- APM
+local apm = require "vim-apm"
+map("n", "<leader>apm", function()
+  apm:toggle_monitor()
+end)
+
+-- Flash
+map({ "n", "x", "o" }, "s", function()
+  require("flash").jump()
+end, { desc = "Flash" })
+
+map({ "n", "x", "o" }, "s", function()
+  require("flash").treesitter()
+end, { desc = "Flash Treesitter" })
+
+map({ "n" }, "<leader>ss", "<cmd>SessionManager<CR>", { desc = "SessionManager Open" })
+map(
+  { "n" },
+  "<leader>sslc",
+  "<cmd>SessionManager load_current_dir_session<CR>",
+  { desc = "SessionManager Open Current Dir Session" }
+)
+
+-- Games
+map({ "n" }, "<leader>pgc", function()
+  require("playtime").setup()
+end, { desc = "Games Tetris" })

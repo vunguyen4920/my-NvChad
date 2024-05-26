@@ -147,6 +147,7 @@ local plugins = {
   {
     "dmmulroy/ts-error-translator.nvim",
     opts = {},
+    event = "BufReadPre",
     config = function()
       require("ts-error-translator").setup {}
     end,
@@ -173,8 +174,8 @@ local plugins = {
   },
   {
     "zeioth/garbage-day.nvim",
-    dependencies = "neovim/nvim-lspconfig",
-    event = "VeryLazy",
+    dependencies = { "neovim/nvim-lspconfig" },
+    event = "BufReadPre",
     opts = {
       aggressive_mode = true,
     },
