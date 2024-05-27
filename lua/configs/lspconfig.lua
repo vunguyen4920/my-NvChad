@@ -36,7 +36,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.inlay_hint.enable(true)
     end
 
-    map("n", "iht", function()
+    map("n", "<leader>iht", function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled {})
     end)
   end,
