@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local map = vim.keymap.set
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     if client and client.server_capabilities.inlayHintProvider then
-      vim.lsp.inlay_hint.enable(true)
+      vim.lsp.inlay_hint.enable(false)
     end
 
     map("n", "<leader>iht", function()
