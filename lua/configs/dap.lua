@@ -71,7 +71,6 @@ dap.adapters = {
 
 dap.configurations = {
   javascript = {
-
     {
       type = "pwa-node",
       request = "launch",

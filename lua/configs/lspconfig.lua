@@ -24,7 +24,18 @@ local servers = {
   "taplo",
   "jdtls",
   "kotlin_language_server",
+  "lua_ls",
 }
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint.enable(true)
+    end
+  end,
+})
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -34,6 +45,40 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+lspconfig.lua_ls.setup {
+  on_init = on_init,
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+      codeLens = {
+        enable = true,
+      },
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+          [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
+          [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
+          [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
+        },
+        maxPreload = 100000,
+        preloadFileSize = 10000,
+      },
+      hint = {
+        enable = true,
+        setType = false,
+        paramType = true,
+        semicolon = "Disable",
+        arrayIndex = "Disable",
+      },
+    },
+  },
+}
 
 lspconfig.eslint.setup {
   on_init = on_init,
@@ -69,7 +114,45 @@ lspconfig.tsserver.setup {
       {
         name = "@vue/typescript-plugin",
         location = vue_language_server_path,
-        languages = { "vue" },
+        languages = { "javascript", "typescript", "vue" },
+      },
+    },
+  },
+  settings = {
+    javascript = {
+      implementationsCodeLens = {
+        enabled = true,
+      },
+      referencesCodeLens = {
+        enabled = true,
+        showOnAllFunctions = true,
+      },
+      inlayHints = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
+    },
+    typescript = {
+      implementationsCodeLens = {
+        enabled = true,
+      },
+      referencesCodeLens = {
+        enabled = true,
+        showOnAllFunctions = true,
+      },
+      inlayHints = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
       },
     },
   },

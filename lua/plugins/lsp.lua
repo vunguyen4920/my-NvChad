@@ -140,6 +140,9 @@ local plugins = {
 
         -- general
         "js",
+        "javadbg",
+        "javatest",
+        "kotlin",
       },
     },
   },
