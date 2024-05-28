@@ -183,14 +183,6 @@ local plugins = {
     end,
     event = "BufReadPre",
   },
-  {
-    "zeioth/garbage-day.nvim",
-    dependencies = { "neovim/nvim-lspconfig" },
-    event = "BufReadPre",
-    opts = {
-      aggressive_mode = true,
-    },
-  },
 }
 
 return plugins
