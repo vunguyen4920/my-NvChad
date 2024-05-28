@@ -33,11 +33,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local map = vim.keymap.set
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     if client and client.server_capabilities.inlayHintProvider then
-      vim.lsp.inlay_hint.enable(false)
+      if vim.fn.has "win32" then
+        vim.lsp.inlay_hint.enable(0, false)
+      else
+        vim.lsp.inlay_hint.enable(false)
+      end
     end
 
     map("n", "<leader>iht", function()
-      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled {})
+      if vim.fn.has "win32" then
+        vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled {})
+      else
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled {})
+      end
     end)
   end,
 })
