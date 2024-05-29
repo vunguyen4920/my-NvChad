@@ -17,6 +17,7 @@ local servers = {
   "yamlls",
   "jsonls",
   "tailwindcss",
+  "somesass_ls",
   "prismals",
   "graphql",
   "marksman",

@@ -1,6 +1,8 @@
 local options = {
   formatters_by_ft = {
     css = { { "prettierd", "prettier" }, "eslint_d" },
+    scss = { { "prettierd", "prettier" } },
+    sass = { { "prettierd", "prettier" } },
     graphql = { { "prettierd", "prettier" }, "eslint_d" },
     html = { { "prettierd", "prettier" }, "eslint_d" },
     javascript = { { "prettierd", "prettier" }, "eslint_d" },
@@ -18,12 +20,18 @@ local options = {
     kotlin = { "ktlint" },
   },
 
-  format_on_save = {
-    -- These options will be passed to conform.format()
-    timeout_ms = 12000,
-    async = false,
-    lsp_fallback = true,
-  },
+  format_on_save = function(bufnr)
+    -- Disable with a global or buffer-local variable
+    if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+      return
+    end
+
+    return {
+      timeout_ms = 12000,
+      async = false,
+      lsp_fallback = true,
+    }
+  end,
 }
 
 vim.api.nvim_create_user_command("FormatDisable", function(args)

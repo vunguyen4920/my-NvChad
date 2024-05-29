@@ -13,6 +13,7 @@
 - Win32yank, for clipboard
 - git
 - Codeium for code completion
+- sed, for replacing
 
 ## Installation
 
