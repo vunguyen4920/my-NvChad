@@ -28,29 +28,6 @@ local servers = {
   "lua_ls",
 }
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-  callback = function(args)
-    local map = vim.keymap.set
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client and client.server_capabilities.inlayHintProvider then
-      if vim.fn.has "win32" then
-        vim.lsp.inlay_hint.enable(0, false)
-      else
-        vim.lsp.inlay_hint.enable(false)
-      end
-    end
-
-    map("n", "<leader>iht", function()
-      if vim.fn.has "win32" then
-        vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled {})
-      else
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled {})
-      end
-    end)
-  end,
-})
-
 -- lsps with default config
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
