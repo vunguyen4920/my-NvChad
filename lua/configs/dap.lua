@@ -3,7 +3,7 @@ local ui = require "dapui"
 local mason_registry = require "mason-registry"
 
 -- ui
-vim.fn.sign_define("DapBreakpoint", { text = "🟥", texthl = "", linehl = "", numhl = "" })
+-- vim.fn.sign_define("DapBreakpoint", { text = "🟥", texthl = "", linehl = "", numhl = "" })
 
 ui.setup {
   icons = { expanded = "▾", collapsed = "▸" },

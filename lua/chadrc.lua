@@ -5,7 +5,7 @@
 local M = {}
 
 M.ui = {
-  theme = "bearded-arc",
+  theme = "nord",
 
   nvdash = {
     load_on_startup = true,
