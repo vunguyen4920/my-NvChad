@@ -1,4 +1,5 @@
 -- TODO: test dap servers
+-- TODO: lombok bug
 local java_cmds = vim.api.nvim_create_augroup("java_cmds", { clear = true })
 local mason_registry = require "mason-registry"
 

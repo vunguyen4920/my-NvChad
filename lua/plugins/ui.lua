@@ -37,9 +37,10 @@ local plugins = {
   },
   {
     "j-hui/fidget.nvim",
-    opts = function()
-      return require "configs.fidget"
+    config = function()
+      require("fidget").setup()
     end,
+    event = "BufEnter",
   },
   -- TODO: Test this color plugin
   {
