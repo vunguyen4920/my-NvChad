@@ -42,14 +42,6 @@ local plugins = {
     end,
     event = "BufEnter",
   },
-  -- TODO: Test this color plugin
-  {
-    "max397574/colortils.nvim",
-    cmd = "Colortils",
-    config = function()
-      require("colortils").setup()
-    end,
-  },
 }
 
 return plugins
