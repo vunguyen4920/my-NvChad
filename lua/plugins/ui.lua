@@ -45,7 +45,7 @@ local plugins = {
   {
     "lewis6991/satellite.nvim",
     config = function()
-      require("scrollview").setup {}
+      require("satellite").setup {}
     end,
     event = "BufEnter",
   },
