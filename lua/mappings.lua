@@ -209,3 +209,33 @@ map(
   '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
   { desc = "Search on current file" }
 )
+
+-- Chainsaw
+local chainsaw = require "chainsaw"
+map("n", "<leader>cv", function()
+  chainsaw.variableLog()
+end, { desc = "Chainsaw Variable Log" })
+map("n", "<leader>co", function()
+  chainsaw.objectLog()
+end, { desc = "Chainsaw Object Log" })
+map("n", "<leader>cas", function()
+  chainsaw.assertLog()
+end, { desc = "Chainsaw Assert Log" })
+map("n", "<leader>cme", function()
+  chainsaw.messageLog()
+end, { desc = "Chainsaw Message Log" })
+map("n", "<leader>cst", function()
+  chainsaw.stacktraceLog()
+end, { desc = "Chainsaw Stacktrace Log" })
+map("n", "<leader>cb", function()
+  chainsaw.beepLog()
+end, { desc = "Chainsaw Beep Log" })
+map("n", "<leader>ct", function()
+  chainsaw.timeLog()
+end, { desc = "Chainsaw Time Log" })
+map("n", "<leader>cd", function()
+  chainsaw.debugLog()
+end, { desc = "Chainsaw Debug Log" })
+map("n", "<leader>cr", function()
+  chainsaw.removeLogs()
+end, { desc = "Chainsaw Remove Logs" })
