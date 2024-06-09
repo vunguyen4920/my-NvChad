@@ -2,8 +2,9 @@ return {
   {
     "m4xshen/hardtime.nvim",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    opts = {},
-    lazy = false,
+    opts = {
+      disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "oil", "harpoon", "spectre" },
+    },
   },
   {
     "folke/neodev.nvim",
@@ -63,6 +64,10 @@ return {
   {
     "nvim-pack/nvim-spectre",
     dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+  {
+    "lewis6991/spaceless.nvim",
     opts = {},
   },
 }
