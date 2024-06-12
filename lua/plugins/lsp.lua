@@ -4,6 +4,11 @@ local plugins = {
     opts = {},
   },
   { "mfussenegger/nvim-jdtls" },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+  },
   { "b0o/schemastore.nvim" },
   {
     "williamboman/mason-lspconfig.nvim",
@@ -174,6 +179,7 @@ local plugins = {
     end,
     event = "BufReadPre",
   },
+  -- TODO: Read the docs again
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },

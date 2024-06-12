@@ -15,9 +15,14 @@ local plugins = {
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
     event = "VeryLazy",
+  },
+  {
+    "ahmedkhalf/project.nvim",
     config = function()
-      require("session_manager").setup {}
+      require("project_nvim").setup {}
+      require("telescope").load_extension "projects"
     end,
+    event = "VeryLazy",
   },
 }
 

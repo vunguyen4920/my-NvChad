@@ -49,6 +49,11 @@ local plugins = {
     end,
     event = "BufEnter",
   },
+  {
+    "tzachar/highlight-undo.nvim",
+    opts = {},
+    event = "BufReadPre",
+  },
 }
 
 return plugins

@@ -30,24 +30,8 @@ end, { desc = "Harpoon cycle forward buffer" })
 
 -- Trouble.nvim
 map("n", "<leader>tr", function()
-  require("trouble").toggle()
-end, { desc = "Trouble Toggle" })
-
-map("n", "<leader>trw", function()
-  require("trouble").toggle "workspace_diagnostics"
-end, { desc = "Trouble Toggle workspace" })
-
-map("n", "<leader>trd", function()
-  require("trouble").toggle "document_diagnostics"
-end, { desc = "Trouble Toggle document" })
-
-map("n", "<leader>trq", function()
-  require("trouble").toggle "quickfix"
-end, { desc = "Trouble Toggle quickfix" })
-
-map("n", "<leader>trl", function()
-  require("trouble").toggle "loclist"
-end, { desc = "Trouble Toggle loclist" })
+  require("trouble.sources.telescope").open()
+end, { desc = "Trouble Telescope Open" })
 
 -- git
 map("n", "<leader>gg", function()
@@ -181,6 +165,7 @@ map({ "n", "x", "o" }, "sf", function()
   require("flash").treesitter()
 end, { desc = "Flash Treesitter" })
 
+-- Session Manager
 map({ "n" }, "<leader>ss", "<cmd>SessionManager<CR>", { desc = "SessionManager Open" })
 map(
   { "n" },
@@ -188,6 +173,7 @@ map(
   "<cmd>SessionManager load_current_dir_session<CR>",
   { desc = "SessionManager Open Current Dir Session" }
 )
+map({ "n" }, "<leader>sslg", "<cmd>SessionManager load_git_session<CR>", { desc = "SessionManager Open Git Session" })
 
 -- Games
 map({ "n" }, "<leader>pgc", function()
@@ -239,3 +225,8 @@ end, { desc = "Chainsaw Debug Log" })
 map("n", "<leader>cr", function()
   chainsaw.removeLogs()
 end, { desc = "Chainsaw Remove Logs" })
+
+-- Project
+map("n", "<leader>p", function()
+  require("telescope").extensions.projects.projects {}
+end, { desc = "Todo Telescope Project Discover" })

@@ -5,6 +5,7 @@ return {
     opts = {
       disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "oil", "harpoon", "spectre" },
     },
+    event = "BufEnter",
   },
   {
     "folke/neodev.nvim",
@@ -69,5 +70,13 @@ return {
   {
     "lewis6991/spaceless.nvim",
     opts = {},
+    event = "BufEnter",
+  },
+  {
+    "max397574/better-escape.nvim",
+    config = function()
+      require("better_escape").setup()
+    end,
+    event = "BufEnter",
   },
 }
