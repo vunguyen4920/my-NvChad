@@ -1,5 +1,5 @@
 local plugins = {
-  { "rktjmp/playtime.nvim", opts = {}, event = "VeryLazy" },
+  { "rktjmp/playtime.nvim", opts = {}, cmd = "Playtime" },
 }
 
 return plugins

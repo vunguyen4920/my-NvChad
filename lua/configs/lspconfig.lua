@@ -12,7 +12,7 @@ local servers = {
   "emmet_ls",
   "eslint",
   "volar",
-  "tsserver",
+  "vtsls",
   "lemminx",
   "yamlls",
   "jsonls",
@@ -23,7 +23,6 @@ local servers = {
   "marksman",
   "dockerls",
   "taplo",
-  "jdtls",
   "kotlin_language_server",
   "lua_ls",
 }
@@ -84,73 +83,53 @@ local mason_registry = require "mason-registry"
 local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
   .. "/node_modules/@vue/language-server"
 
-lspconfig.volar.setup {}
-
-local function ts_organize_imports()
-  local params = {
-    command = "_typescript.organizeImports",
-    arguments = { vim.api.nvim_buf_get_name(0) },
-    title = "",
-  }
-  vim.lsp.buf.execute_command(params)
-end
+lspconfig.volar.setup {
+  init_options = {
+    vue = {
+      hybridMode = false,
+    },
+  },
+}
 
 -- typescript
-lspconfig.tsserver.setup {
+lspconfig.vtsls.setup {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
-  init_options = {
-    plugins = {
-      {
-        name = "@vue/typescript-plugin",
-        location = vue_language_server_path,
-        languages = { "javascript", "typescript", "vue" },
+  settings = {
+    vtsls = {
+      complete_function_calls = true,
+      autoUseWorkspaceTsdk = true,
+      tsserver = {
+        globalPlugins = {
+          {
+            name = "@vue/typescript-plugin",
+            location = vue_language_server_path,
+            languages = { "vue" },
+            configNamespace = "typescript",
+            enableForWorkspaceTypeScriptVersions = true,
+          },
+        },
       },
     },
-  },
-  settings = {
     javascript = {
-      implementationsCodeLens = {
-        enabled = true,
-      },
-      referencesCodeLens = {
-        enabled = true,
-        showOnAllFunctions = true,
-      },
-      inlayHints = {
-        includeInlayParameterNameHints = "all",
-        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayEnumMemberValueHints = true,
+      suggest = {
+        completeFunctionCalls = true,
       },
     },
     typescript = {
-      implementationsCodeLens = {
-        enabled = true,
-      },
-      referencesCodeLens = {
-        enabled = true,
-        showOnAllFunctions = true,
+      updateImportsOnFileMove = { enabled = "always" },
+      suggest = {
+        completeFunctionCalls = true,
       },
       inlayHints = {
-        includeInlayParameterNameHints = "all",
-        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayEnumMemberValueHints = true,
+        enumMemberValues = { enabled = true },
+        functionLikeReturnTypes = { enabled = true },
+        parameterNames = { enabled = "literals" },
+        parameterTypes = { enabled = true },
+        propertyDeclarationTypes = { enabled = true },
+        variableTypes = { enabled = false },
       },
-    },
-  },
-  commands = {
-    OrganizeImports = {
-      ts_organize_imports,
-      description = "Organize Imports",
     },
   },
   filetypes = {

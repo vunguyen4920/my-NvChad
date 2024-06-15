@@ -1,5 +1,4 @@
 -- TODO: test dap servers
--- TODO: lombok bug
 local java_cmds = vim.api.nvim_create_augroup("java_cmds", { clear = true })
 local mason_registry = require "mason-registry"
 
@@ -77,6 +76,7 @@ local features = {
 }
 
 local function jdtls_on_attach(_, bufnr)
+  local on_attach = require("nvchad.configs.lspconfig").on_attach
   if features.debugger then
     enable_debugger(bufnr)
   end
@@ -95,6 +95,8 @@ local function jdtls_on_attach(_, bufnr)
   vim.keymap.set("n", "crc", "<cmd>lua require('jdtls').extract_constant()<cr>", opts)
   vim.keymap.set("x", "crc", "<esc><cmd>lua require('jdtls').extract_constant(true)<cr>", opts)
   vim.keymap.set("x", "crm", "<esc><Cmd>lua require('jdtls').extract_method(true)<cr>", opts)
+
+  on_attach(_, bufnr)
 end
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.

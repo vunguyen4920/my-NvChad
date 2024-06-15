@@ -29,9 +29,13 @@ map("n", "<C-k>", function()
 end, { desc = "Harpoon cycle forward buffer" })
 
 -- Trouble.nvim
-map("n", "<leader>tr", function()
-  require("trouble.sources.telescope").open()
-end, { desc = "Trouble Telescope Open" })
+map("n", "<leader>tr", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Trouble Diagnostics Open" })
+map(
+  "n",
+  "<leader>tR",
+  "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+  { desc = "Trouble Diagnostics Current Buf Open" }
+)
 
 -- git
 map("n", "<leader>gg", function()
@@ -176,9 +180,7 @@ map(
 map({ "n" }, "<leader>sslg", "<cmd>SessionManager load_git_session<CR>", { desc = "SessionManager Open Git Session" })
 
 -- Games
-map({ "n" }, "<leader>pgc", function()
-  require("playtime").setup()
-end, { desc = "Games Play Card Games" })
+map({ "n" }, "<leader>pgc", "<cmd>Playtime<CR>", { desc = "Games Play Card Games" })
 
 -- Spectre
 local spectre = require "spectre"

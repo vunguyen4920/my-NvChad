@@ -1,20 +1,30 @@
+local java_filetypes = {
+  "java",
+}
+
 local plugins = {
   {
     "williamboman/mason.nvim",
     opts = {},
   },
-  { "mfussenegger/nvim-jdtls" },
+  {
+    "mfussenegger/nvim-jdtls",
+    ft = java_filetypes,
+  },
   {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {},
   },
-  { "b0o/schemastore.nvim" },
+  {
+    "b0o/SchemaStore.nvim",
+    lazy = true,
+    version = false, -- last release is way too old
+  },
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim" },
-    lazy = true,
-    event = "VeryLazy",
+    event = "BufReadPre",
     opts = {
       ensure_installed = {
         -- defaults
@@ -44,7 +54,7 @@ local plugins = {
         -- general purpose
         "jdtls",
         "kotlin_language_server",
-        "tsserver",
+        "vtsls",
         "taplo",
 
         -- devops
@@ -56,7 +66,7 @@ local plugins = {
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "mfussenegger/nvim-jdtls", "b0o/schemastore.nvim" },
+    dependencies = { "mfussenegger/nvim-jdtls", "b0o/SchemaStore.nvim" },
     config = function()
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
@@ -73,7 +83,7 @@ local plugins = {
     "zapling/mason-conform.nvim",
     dependencies = { "williamboman/mason.nvim" },
     lazy = true,
-    event = "VeryLazy",
+    event = "BufReadPre",
     opts = {
       ensure_installed = {
         -- defaults
@@ -106,7 +116,7 @@ local plugins = {
     "rshkarin/mason-nvim-lint",
     dependencies = { "williamboman/mason.nvim" },
     lazy = true,
-    event = "VeryLazy",
+    event = "BufReadPre",
     opts = {
       ensure_installed = {
         -- defaults
@@ -135,7 +145,7 @@ local plugins = {
     "jay-babu/mason-nvim-dap.nvim",
     dependencies = { "williamboman/mason.nvim" },
     lazy = true,
-    event = "VeryLazy",
+    event = "BufReadPre",
     opts = {
       ensure_installed = {
         -- defaults
@@ -179,15 +189,11 @@ local plugins = {
     end,
     event = "BufReadPre",
   },
-  -- TODO: Read the docs again
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = "Trouble",
     opts = {},
-    config = function()
-      require("trouble").setup {}
-    end,
-    event = "BufReadPre",
   },
 }
 
