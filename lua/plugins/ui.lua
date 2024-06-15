@@ -20,14 +20,6 @@ local plugins = {
     opts = {},
   },
   {
-    "folke/zen-mode.nvim",
-    opts = {},
-  },
-  {
-    "folke/twilight.nvim",
-    opts = {},
-  },
-  {
     "nvim-telescope/telescope-ui-select.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()

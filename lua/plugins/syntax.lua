@@ -1,3 +1,4 @@
+-- TODO: Text objects
 local plugins = {
   {
     "kylechui/nvim-surround",
@@ -48,6 +49,18 @@ local plugins = {
     event = "BufReadPost",
   },
   {
+    "nvim-treesitter/nvim-treesitter-context",
+    opts = {
+      max_lines = 3,
+      multiline_threshold = 1,
+    },
+    config = function()
+      require("treesitter-context").setup()
+    end,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    event = "BufReadPost",
+  },
+  {
     "JoosepAlviste/nvim-ts-context-commentstring",
     opts = {},
     config = function()
@@ -64,7 +77,6 @@ local plugins = {
       }
     end,
   },
-
   {
     "numToStr/Comment.nvim",
     config = function()
@@ -82,6 +94,51 @@ local plugins = {
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+  },
+  {
+    "echasnovski/mini.move",
+    event = "VeryLazy",
+    opts = {},
+  },
+  {
+    "gbprod/yanky.nvim",
+    recommended = true,
+    desc = "Better Yank/Paste",
+    event = "LazyFile",
+    opts = {
+      highlight = { timer = 150 },
+    },
+    keys = {
+      {
+        "<leader>p",
+        function()
+          if LazyVim.pick.picker.name == "telescope" then
+            require("telescope").extensions.yank_history.yank_history {}
+          else
+            vim.cmd [[YankyRingHistory]]
+          end
+        end,
+        desc = "Open Yank History",
+      },
+        -- stylua: ignore
+    { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank Text" },
+      { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, desc = "Put Yanked Text After Cursor" },
+      { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" }, desc = "Put Yanked Text Before Cursor" },
+      { "gp", "<Plug>(YankyGPutAfter)", mode = { "n", "x" }, desc = "Put Yanked Text After Selection" },
+      { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" }, desc = "Put Yanked Text Before Selection" },
+      { "[y", "<Plug>(YankyCycleForward)", desc = "Cycle Forward Through Yank History" },
+      { "]y", "<Plug>(YankyCycleBackward)", desc = "Cycle Backward Through Yank History" },
+      { "]p", "<Plug>(YankyPutIndentAfterLinewise)", desc = "Put Indented After Cursor (Linewise)" },
+      { "[p", "<Plug>(YankyPutIndentBeforeLinewise)", desc = "Put Indented Before Cursor (Linewise)" },
+      { "]P", "<Plug>(YankyPutIndentAfterLinewise)", desc = "Put Indented After Cursor (Linewise)" },
+      { "[P", "<Plug>(YankyPutIndentBeforeLinewise)", desc = "Put Indented Before Cursor (Linewise)" },
+      { ">p", "<Plug>(YankyPutIndentAfterShiftRight)", desc = "Put and Indent Right" },
+      { "<p", "<Plug>(YankyPutIndentAfterShiftLeft)", desc = "Put and Indent Left" },
+      { ">P", "<Plug>(YankyPutIndentBeforeShiftRight)", desc = "Put Before and Indent Right" },
+      { "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)", desc = "Put Before and Indent Left" },
+      { "=p", "<Plug>(YankyPutAfterFilter)", desc = "Put After Applying a Filter" },
+      { "=P", "<Plug>(YankyPutBeforeFilter)", desc = "Put Before Applying a Filter" },
     },
   },
 }

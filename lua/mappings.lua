@@ -82,12 +82,6 @@ require("gitsigns").setup {
   end,
 }
 
--- Zen
-local zen_mode = require "zen-mode"
-map("n", "<leader>z", function()
-  zen_mode.toggle()
-end, { desc = "Toggle Zen Mode" })
-
 -- Formatter
 map("n", "<leader>fme", ":FormatEnable<CR>")
 map("n", "<leader>fmd", ":FormatDisable<CR>")
