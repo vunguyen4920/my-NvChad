@@ -105,7 +105,7 @@ local plugins = {
     "gbprod/yanky.nvim",
     recommended = true,
     desc = "Better Yank/Paste",
-    event = "LazyFile",
+    event = "BufEnter",
     opts = {
       highlight = { timer = 150 },
     },
