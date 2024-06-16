@@ -195,6 +195,80 @@ local plugins = {
     cmd = "Trouble",
     opts = {},
   },
+  {
+    "MaximilianLloyd/tw-values.nvim",
+    keys = {
+      { "<leader>tw", "<cmd>TWValues<cr>", desc = "[T]ailwind [V]alues" },
+    },
+    opts = {
+      border = "rounded", -- Valid window border style,
+      show_unknown_classes = true, -- Shows the unknown classes popup
+      focus_preview = true, -- Sets the preview as the current window
+      copy_register = "", -- The register to copy values to,
+      keymaps = {
+        copy = "<C-y>", -- Normal mode keymap to copy the CSS values between {}
+      },
+    },
+  },
+  {
+    "debugloop/telescope-undo.nvim",
+    dependencies = { -- note how they're inverted to above example
+      {
+        "nvim-telescope/telescope.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+      },
+    },
+    keys = {
+      { -- lazy style key map
+        "<leader>u",
+        "<cmd>Telescope undo<cr>",
+        desc = "[U]ndo history",
+      },
+    },
+    opts = {
+      -- don't use `defaults = { }` here, do this in the main telescope spec
+      extensions = {
+        undo = {
+          -- telescope-undo.nvim config, see below
+        },
+        -- no other extensions here, they can have their own spec too
+      },
+    },
+    config = function(_, opts)
+      -- Calling telescope's setup from multiple specs does not hurt, it will happily merge the
+      -- configs for us. We won't use data, as everything is in it's own namespace (telescope
+      -- defaults, as well as each extension).
+      require("telescope").setup(opts)
+      require("telescope").load_extension "undo"
+    end,
+  },
+  {
+    "aznhe21/actions-preview.nvim",
+    keys = {
+      {
+        mode = { "n", "v" },
+        "gap",
+        function()
+          require("actions-preview").code_actions()
+        end,
+        desc = "[G]oto [C]ode Actions [P]reviews",
+      },
+    },
+    config = function()
+      require("actions-preview").setup {
+        telescope = {
+          sorting_strategy = "ascending",
+          layout_strategy = "horizontal",
+          layout_config = {
+            width = 0.8,
+            height = 0.9,
+            prompt_position = "top",
+            preview_cutoff = 20,
+          },
+        },
+      }
+    end,
+  },
 }
 
 return plugins

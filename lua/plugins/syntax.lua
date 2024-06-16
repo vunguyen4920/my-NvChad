@@ -111,13 +111,9 @@ local plugins = {
     },
     keys = {
       {
-        "<leader>p",
+        "<leader>y",
         function()
-          if LazyVim.pick.picker.name == "telescope" then
-            require("telescope").extensions.yank_history.yank_history {}
-          else
-            vim.cmd [[YankyRingHistory]]
-          end
+          require("telescope").extensions.yank_history.yank_history {}
         end,
         desc = "Open Yank History",
       },
