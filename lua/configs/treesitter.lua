@@ -11,6 +11,7 @@ local options = {
     "scss",
     "tsx",
     "vue",
+    "svelte",
     "xml",
     "yaml",
     "json",

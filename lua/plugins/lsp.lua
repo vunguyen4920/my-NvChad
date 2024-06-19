@@ -38,6 +38,7 @@ local plugins = {
         "emmet_ls",
         "eslint",
         "volar",
+        "svelte",
         "lemminx",
         "yamlls",
         "jsonls",

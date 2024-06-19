@@ -226,3 +226,6 @@ end, { desc = "Chainsaw Remove Logs" })
 map("n", "<leader>p", function()
   require("telescope").extensions.projects.projects {}
 end, { desc = "Todo Telescope Project Discover" })
+
+-- Treesitter context
+map("n", "<leader>tc", "<cmd>TSContextToggle<CR>", { desc = "Treesitter Context Toggle" })
