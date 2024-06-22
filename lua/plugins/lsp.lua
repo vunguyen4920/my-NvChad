@@ -12,11 +12,6 @@ local plugins = {
     ft = java_filetypes,
   },
   {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {},
-  },
-  {
     "b0o/SchemaStore.nvim",
     lazy = true,
     version = false, -- last release is way too old
@@ -174,10 +169,7 @@ local plugins = {
   {
     "dmmulroy/ts-error-translator.nvim",
     opts = {},
-    event = "BufReadPre",
-    config = function()
-      require("ts-error-translator").setup {}
-    end,
+    event = "BufReadPost",
   },
   {
     "ThePrimeagen/refactoring.nvim",
@@ -252,7 +244,7 @@ local plugins = {
         function()
           require("actions-preview").code_actions()
         end,
-        desc = "[G]oto [C]ode Actions [P]reviews",
+        desc = "[G]oto Code [A]ctions [P]reviews",
       },
     },
     config = function()
@@ -269,6 +261,14 @@ local plugins = {
         },
       }
     end,
+  },
+  {
+    "zeioth/garbage-day.nvim",
+    dependencies = "neovim/nvim-lspconfig",
+    event = "VeryLazy",
+    opts = {
+      aggressive_mode = true,
+    },
   },
 }
 

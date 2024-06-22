@@ -92,9 +92,22 @@ lspconfig.volar.setup {
   },
 }
 
+local function ts_organize_imports()
+  local params = {
+    command = "typescript.organizeImports",
+    arguments = { vim.api.nvim_buf_get_name(0) },
+    title = "",
+  }
+  vim.lsp.buf.execute_command(params)
+end
+
 -- typescript
 lspconfig.vtsls.setup {
-  on_attach = on_attach,
+  on_attach = function(_, bufnr)
+    on_attach(_, bufnr)
+
+    vim.keymap.set("n", "<A-o>", ts_organize_imports, { buffer = bufnr })
+  end,
   on_init = on_init,
   capabilities = capabilities,
   settings = {
@@ -139,6 +152,14 @@ lspconfig.vtsls.setup {
         propertyDeclarationTypes = { enabled = true },
         variableTypes = { enabled = false },
       },
+    },
+  },
+  commands = {
+    OrganizeImports = {
+      function()
+        ts_organize_imports()
+      end,
+      description = "Organize Imports",
     },
   },
   filetypes = {

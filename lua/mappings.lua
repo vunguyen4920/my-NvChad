@@ -101,7 +101,8 @@ map("n", "[t", function()
   require("todo-comments").jump_prev()
 end, { desc = "Todo Jump previous" })
 
-map("n", "<leader>tot", "<cmd>Telescope todo-comments todo<CR>", { desc = "Todo Telescope" })
+map("n", "<leader>tot", "<cmd>TodoTelescope keywords=TODO<CR>", { desc = "[To]do Telescope [T]odo" })
+map("n", "<leader>ton", "<cmd>TodoTelescope keywords=NOTE<CR>", { desc = "[To]do Telescope [N]ote" })
 
 -- Markdown Preview
 map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Preview Markdown" })
