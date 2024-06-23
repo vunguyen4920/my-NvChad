@@ -236,4 +236,4 @@ end, { desc = "Todo Telescope Project Discover" })
 map("n", "<leader>tc", "<cmd>TSContextToggle<CR>", { desc = "Treesitter Context Toggle" })
 
 -- Color Picker
-map({ "n", "i" }, "<leader>cp", "<cmd>CccPick<cr>", { desc = "Pick Color" })
+map({ "n" }, "<leader>cp", "<cmd>CccPick<cr>", { desc = "Pick Color" })

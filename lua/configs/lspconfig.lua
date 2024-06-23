@@ -93,21 +93,38 @@ lspconfig.volar.setup {
   },
 }
 
-local function ts_organize_imports()
-  local params = {
-    command = "typescript.organizeImports",
-    arguments = { vim.api.nvim_buf_get_name(0) },
-    title = "",
-  }
-  vim.lsp.buf.execute_command(params)
-end
-
 -- typescript
 lspconfig.vtsls.setup {
   on_attach = function(_, bufnr)
     on_attach(_, bufnr)
 
-    vim.keymap.set("n", "<A-o>", ts_organize_imports, { buffer = bufnr })
+    vim.keymap.set("n", "<A-o>", function()
+      local params = {
+        command = "typescript.organizeImports",
+        arguments = { vim.api.nvim_buf_get_name(0) },
+        title = "",
+      }
+      vim.lsp.buf.execute_command(params)
+    end, { buffer = bufnr, desc = "Organize Imports" })
+
+    vim.keymap.set("n", "gD", function()
+      local positionParams = vim.lsp.util.make_position_params()
+      local params = {
+        command = "typescript.goToSourceDefinition",
+        arguments = { positionParams.textDocument.uri, positionParams.position },
+        open = true,
+      }
+      vim.lsp.buf.execute_command(params)
+    end, { buffer = bufnr, desc = "Goto Source Definition" })
+
+    vim.keymap.set("n", "gR", function()
+      local params = {
+        command = "typescript.findAllFileReferences",
+        arguments = { vim.uri_from_bufnr(0) },
+        open = true,
+      }
+      vim.lsp.buf.execute_command(params)
+    end, { buffer = bufnr, desc = "Goto Source Definition" })
   end,
   on_init = on_init,
   capabilities = capabilities,
@@ -117,13 +134,6 @@ lspconfig.vtsls.setup {
       autoUseWorkspaceTsdk = true,
       tsserver = {
         globalPlugins = {
-          {
-            name = "@vue/typescript-plugin",
-            location = vue_language_server_path,
-            languages = { "vue" },
-            configNamespace = "typescript",
-            enableForWorkspaceTypeScriptVersions = true,
-          },
           {
             name = "typescript-svelte-plugin",
             enabled = true,
@@ -155,14 +165,19 @@ lspconfig.vtsls.setup {
       },
     },
   },
-  commands = {
-    OrganizeImports = {
-      function()
-        ts_organize_imports()
-      end,
-      description = "Organize Imports",
-    },
-  },
+  before_init = function(params, config)
+    local result = vim.system({ "npm", "query", "#vue" }, { cwd = params.workspaceFolders[1].name, text = true }):wait()
+    if result.stdout ~= "[]" then
+      local vue_plugin_config = {
+        name = "@vue/typescript-plugin",
+        location = vue_language_server_path,
+        languages = { "vue" },
+        configNamespace = "typescript",
+        enableForWorkspaceTypeScriptVersions = true,
+      }
+      table.insert(config.settings.vtsls.tsserver.globalPlugins, vue_plugin_config)
+    end
+  end,
   filetypes = {
     "javascript",
     "javascriptreact",
