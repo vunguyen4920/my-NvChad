@@ -10,7 +10,7 @@ local plugins = {
     keys = {
       {
         mode = { "v", "n" },
-        "<Leader>m",
+        "<leader>m",
         "<cmd>MCstart<cr>",
         desc = "Create a selection for selected text or word under the cursor",
       },
@@ -30,15 +30,6 @@ local plugins = {
         },
       },
     },
-  },
-  {
-    "karb94/neoscroll.nvim",
-    event = "BufReadPre",
-    config = function()
-      require("neoscroll").setup {
-        easing_function = "sine",
-      }
-    end,
   },
 }
 

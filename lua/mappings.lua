@@ -1,5 +1,14 @@
 require "nvchad.mappings"
 
+--[[ Disable mappings ]]
+local nomap = vim.keymap.del
+nomap("i", "<C-b>")
+nomap("n", "<C-h>")
+nomap("n", "<C-l>")
+nomap("n", "<C-j>")
+nomap("n", "<C-k>")
+nomap("n", "<C-s>")
+
 -- add yours here
 
 local map = vim.keymap.set
@@ -158,21 +167,16 @@ end, { desc = "APM-Monitor Toggle" })
 -- Flash
 map({ "n", "x", "o" }, "s", function()
   require("flash").jump()
-end, { desc = "Flash" })
+end, { desc = "Flash Jump" })
 
-map({ "n", "x", "o" }, "sf", function()
+map({ "n", "x", "o" }, "Z", function()
   require("flash").treesitter()
 end, { desc = "Flash Treesitter" })
 
 -- Session Manager
-map({ "n" }, "<leader>ss", "<cmd>SessionManager<CR>", { desc = "SessionManager Open" })
-map(
-  { "n" },
-  "<leader>sslc",
-  "<cmd>SessionManager load_current_dir_session<CR>",
-  { desc = "SessionManager Open Current Dir Session" }
-)
-map({ "n" }, "<leader>sslg", "<cmd>SessionManager load_git_session<CR>", { desc = "SessionManager Open Git Session" })
+map({ "n" }, "<leader>ss", require("auto-session.session-lens").search_session, { desc = "Session Lens" })
+map({ "n" }, "<leader>sr", "<cmd>SessionRestore<CR>", { desc = "Session Restore" })
+map({ "n" }, "<leader>sd", "<cmd>SessionDelete<CR>", { desc = "Session Delete" })
 
 -- Games
 map({ "n" }, "<leader>pgc", "<cmd>Playtime<CR>", { desc = "Games Play Card Games" })
@@ -230,3 +234,6 @@ end, { desc = "Todo Telescope Project Discover" })
 
 -- Treesitter context
 map("n", "<leader>tc", "<cmd>TSContextToggle<CR>", { desc = "Treesitter Context Toggle" })
+
+-- Color Picker
+map({ "n", "i" }, "<leader>cp", "<cmd>CccPick<cr>", { desc = "Pick Color" })

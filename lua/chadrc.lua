@@ -15,6 +15,22 @@ M.ui = {
     Comment = { italic = true },
     ["@comment"] = { italic = true },
   },
+
+  statusline = {
+    theme = "minimal",
+    separator_style = "round",
+  },
+
+  telescope = {
+    style = "bordered",
+  },
+
+  lsp_semantic_tokens = true,
+
+  tabufline = {
+    show_numbers = true,
+    lazyload = true,
+  },
 }
 
 -- clipboard

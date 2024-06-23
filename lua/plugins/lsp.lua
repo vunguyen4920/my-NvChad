@@ -1,7 +1,3 @@
-local java_filetypes = {
-  "java",
-}
-
 local plugins = {
   {
     "williamboman/mason.nvim",
@@ -9,7 +5,7 @@ local plugins = {
   },
   {
     "mfussenegger/nvim-jdtls",
-    ft = java_filetypes,
+    ft = "java",
   },
   {
     "b0o/SchemaStore.nvim",
@@ -26,23 +22,24 @@ local plugins = {
         "lua_ls",
 
         -- web-dev
-        "html",
-        "cssls",
         "css_variables",
+        "cssls",
         "cssmodules_ls",
         "emmet_ls",
         "eslint",
-        "volar",
-        "svelte",
-        "lemminx",
-        "yamlls",
+        "html",
         "jsonls",
-        "tailwindcss",
+        "lemminx",
         "somesass_ls",
+        "svelte",
+        "tailwindcss",
+        "volar",
+        "yamlls",
+        "astro",
 
         -- db
-        "prismals",
         "graphql",
+        "prismals",
 
         -- documentation
         "marksman",
@@ -50,12 +47,12 @@ local plugins = {
         -- general purpose
         "jdtls",
         "kotlin_language_server",
-        "vtsls",
         "taplo",
+        "vtsls",
 
         -- devops
-        "dockerls",
         "docker_compose_language_service",
+        "dockerls",
         "gradle_ls",
       },
     },
@@ -70,7 +67,8 @@ local plugins = {
   },
   {
     "stevearc/conform.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
     config = function()
       require "configs.conform"
     end,
@@ -270,6 +268,18 @@ local plugins = {
       aggressive_mode = true,
     },
   },
+  {
+    "folke/neodev.nvim",
+    opts = {},
+    config = function()
+      require("neodev").setup {
+        library = { plugins = { "nvim-dap-ui" }, types = true },
+      }
+    end,
+  },
+  { "chrisgrieser/nvim-chainsaw" },
+  { "kevinhwang91/nvim-bqf", ft = "qf" },
+  { "yorickpeterse/nvim-pqf", ft = "qf" },
 }
 
 return plugins

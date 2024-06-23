@@ -4,8 +4,6 @@ require "nvchad.options"
 
 local o = vim.o
 o.cursorlineopt = "both" -- to enable cursorline!
-
-local o = vim.o
 o.title = true
 
 if vim.g.neovide then
@@ -17,3 +15,6 @@ if vim.g.neovide then
 end
 
 vim.opt.relativenumber = true
+
+vim.opt.termguicolors = true
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

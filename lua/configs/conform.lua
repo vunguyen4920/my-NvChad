@@ -1,4 +1,3 @@
--- TODO: Svelte still bugging with formatter
 local options = {
   formatters_by_ft = {
     css = { { "prettierd", "prettier" } },

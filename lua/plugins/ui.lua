@@ -47,6 +47,11 @@ local plugins = {
     opts = {},
     event = "BufReadPre",
   },
+  {
+    "Bekaboo/dropbar.nvim",
+    event = "BufReadPost",
+    opts = {},
+  },
 }
 
 return plugins

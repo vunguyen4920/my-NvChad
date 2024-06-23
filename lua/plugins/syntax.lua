@@ -137,6 +137,11 @@ local plugins = {
       { "=P", "<Plug>(YankyPutBeforeFilter)", desc = "Put Before Applying a Filter" },
     },
   },
+  {
+    "lewis6991/spaceless.nvim",
+    opts = {},
+    event = "BufEnter",
+  },
 }
 
 return plugins
