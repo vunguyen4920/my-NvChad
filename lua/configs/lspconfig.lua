@@ -135,6 +135,13 @@ lspconfig.vtsls.setup {
       tsserver = {
         globalPlugins = {
           {
+            name = "@vue/typescript-plugin",
+            location = vue_language_server_path,
+            languages = { "vue" },
+            configNamespace = "typescript",
+            enableForWorkspaceTypeScriptVersions = true,
+          },
+          {
             name = "typescript-svelte-plugin",
             enabled = true,
             languages = { "svelte" },
@@ -165,19 +172,6 @@ lspconfig.vtsls.setup {
       },
     },
   },
-  before_init = function(params, config)
-    local result = vim.system({ "npm", "query", "#vue" }, { cwd = params.workspaceFolders[1].name, text = true }):wait()
-    if result.stdout ~= "[]" then
-      local vue_plugin_config = {
-        name = "@vue/typescript-plugin",
-        location = vue_language_server_path,
-        languages = { "vue" },
-        configNamespace = "typescript",
-        enableForWorkspaceTypeScriptVersions = true,
-      }
-      table.insert(config.settings.vtsls.tsserver.globalPlugins, vue_plugin_config)
-    end
-  end,
   filetypes = {
     "javascript",
     "javascriptreact",
