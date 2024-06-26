@@ -174,9 +174,6 @@ map({ "n", "x", "o" }, "Z", function()
 end, { desc = "Flash Treesitter" })
 
 -- Session Manager
-map({ "n" }, "<leader>ss", require("auto-session.session-lens").search_session, { desc = "Session Lens" })
-map({ "n" }, "<leader>sr", "<cmd>SessionRestore<CR>", { desc = "Session Restore" })
-map({ "n" }, "<leader>sd", "<cmd>SessionDelete<CR>", { desc = "Session Delete" })
 
 -- Games
 map({ "n" }, "<leader>pgc", "<cmd>Playtime<CR>", { desc = "Games Play Card Games" })
@@ -227,13 +224,22 @@ map("n", "<leader>cr", function()
   chainsaw.removeLogs()
 end, { desc = "Chainsaw Remove Logs" })
 
--- Project
-map("n", "<leader>p", function()
-  require("telescope").extensions.projects.projects {}
-end, { desc = "Todo Telescope Project Discover" })
-
 -- Treesitter context
 map("n", "<leader>tc", "<cmd>TSContextToggle<CR>", { desc = "Treesitter Context Toggle" })
+
+-- Workspaces
+map("n", "<leader>p", function()
+  vim.cmd "Telescope projections"
+end)
+map("n", "<leader>pa", function()
+  vim.cmd "AddWorkspace"
+end)
+map("n", "<leader>ss", function()
+  vim.cmd "StoreProjectSession"
+end)
+map("n", "<leader>sr", function()
+  vim.cmd "RestoreProjectSession"
+end)
 
 -- Color Picker
 map({ "n" }, "<leader>cp", "<cmd>CccPick<cr>", { desc = "Pick Color" })
