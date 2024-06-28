@@ -10,11 +10,6 @@ local plugins = {
           if nvim_tree_present then
             api.tree.close()
           end
-
-          -- neo-tree
-          if pcall(require, "neo-tree") then
-            vim.cmd [[Neotree action=close]]
-          end
         end,
       },
       workspaces = {

@@ -1,6 +1,6 @@
 require "nvchad.mappings"
 
---[[ Disable mappings ]]
+--[[ Disable default mappings ]]
 local nomap = vim.keymap.del
 nomap("i", "<C-b>")
 nomap("n", "<C-h>")
@@ -8,6 +8,8 @@ nomap("n", "<C-l>")
 nomap("n", "<C-j>")
 nomap("n", "<C-k>")
 nomap("n", "<C-s>")
+nomap("n", "<leader>h")
+nomap("n", "<leader>ca")
 
 -- add yours here
 
@@ -58,6 +60,8 @@ end, { desc = "Git Neogit Open in split" })
 map("n", "<leader>gc", function()
   require("neogit").open { "commit" }
 end, { desc = "Git Neogit Open commit popup" })
+
+map("n", "<leader>h", "<cmd>DiffviewFileHistory %<CR>", { desc = "Git Diffview Current File [H]istory" })
 
 require("gitsigns").setup {
   on_attach = function(bufnr)
@@ -157,6 +161,9 @@ end, { desc = "DAP end" })
 map("i", "<A-;>", function()
   return vim.fn["codeium#Accept"]()
 end, { expr = true, silent = true, desc = "AI Codeium Accept" })
+map("n", "<leader>ai", function()
+  return vim.fn["codeium#Chat"]()
+end, { expr = true, silent = true, desc = "AI Codeium Chat" })
 
 -- APM
 local apm = require "vim-apm"
@@ -176,7 +183,7 @@ end, { desc = "Flash Treesitter" })
 -- Session Manager
 
 -- Games
-map({ "n" }, "<leader>pgc", "<cmd>Playtime<CR>", { desc = "Games Play Card Games" })
+map({ "n" }, "<leader>gac", "<cmd>Playtime<CR>", { desc = "[Ga]mes Play Card Games" })
 
 -- Spectre
 local spectre = require "spectre"

@@ -1,7 +1,10 @@
 local plugins = {
   {
     "sindrets/diffview.nvim",
-    opts = {},
+    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+    opts = {
+      enhanced_diff_hl = true,
+    },
   },
   {
     "NeogitOrg/neogit",
@@ -13,6 +16,7 @@ local plugins = {
       "nvim-telescope/telescope.nvim", -- optional
     },
     opts = {
+      graph_style = "unicode",
       integrations = {
         diffview = true,
         telescope = true,
