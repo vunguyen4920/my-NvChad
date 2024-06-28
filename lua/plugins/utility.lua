@@ -4,6 +4,19 @@ local plugins = {
     event = "BufEnter",
     dependencies = {
       "kevinhwang91/promise-async",
+      {
+        "luukvbaal/statuscol.nvim",
+        config = function()
+          local builtin = require "statuscol.builtin"
+          require("statuscol").setup {
+            relculright = true,
+            segments = {
+              { text = { "%s" }, click = "v:lua.ScSa" },
+              { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+            },
+          }
+        end,
+      },
     },
     opts = {},
     config = function()
@@ -22,11 +35,6 @@ local plugins = {
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
     end,
-  },
-  {
-    "uga-rosa/ccc.nvim",
-    cmd = "CccPick",
-    opts = {},
   },
 }
 
