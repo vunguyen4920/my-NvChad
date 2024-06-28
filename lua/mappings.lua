@@ -230,16 +230,16 @@ map("n", "<leader>tc", "<cmd>TSContextToggle<CR>", { desc = "Treesitter Context 
 -- Workspaces
 map("n", "<leader>p", function()
   vim.cmd "Telescope projections"
-end)
+end, { desc = "Projects Telescope" })
 map("n", "<leader>pa", function()
   vim.cmd "AddWorkspace"
-end)
+end, { desc = "Projects Add Workspace" })
 map("n", "<leader>ss", function()
   vim.cmd "StoreProjectSession"
-end)
+end, { desc = "Projects Store Session" })
 map("n", "<leader>sr", function()
   vim.cmd "RestoreProjectSession"
-end)
+end, { desc = "Projects Restore Session" })
 
 -- Color Picker
 map({ "n" }, "<leader>cp", "<cmd>CccPick<cr>", { desc = "Pick Color" })
