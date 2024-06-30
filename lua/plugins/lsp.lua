@@ -88,7 +88,6 @@ local plugins = {
 
         -- web-dev
         "prettier",
-        "prettierd",
 
         -- general
         "google-java-format",
@@ -263,7 +262,7 @@ local plugins = {
   {
     "zeioth/garbage-day.nvim",
     dependencies = "neovim/nvim-lspconfig",
-    event = "VeryLazy",
+    event = "BufEnter",
     opts = {},
   },
   {
@@ -287,6 +286,18 @@ local plugins = {
     config = function()
       require("lsp-file-operations").setup()
     end,
+  },
+  {
+    "felpafel/inlay-hint.nvim",
+    event = "LspAttach",
+    opts = {
+      virt_text_pos = "inline",
+    },
+  },
+  {
+    "vuki656/package-info.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {},
   },
 }
 

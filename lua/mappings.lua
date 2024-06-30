@@ -249,3 +249,24 @@ end, { desc = "Projects Restore Session" })
 
 -- Color Picker
 map({ "n" }, "<leader>cp", "<cmd>CccPick<cr>", { desc = "Pick Color" })
+
+-- NPM Package Info
+-- Show dependency versions
+map(
+  { "n" },
+  "<leader>pks",
+  "<cmd>lua require('package-info').show({ force = true })<cr>",
+  { silent = true, noremap = true }
+)
+-- Hide dependency versions
+map({ "n" }, "<leader>pkc", require("package-info").hide, { silent = true, noremap = true })
+-- Toggle dependency versions
+map({ "n" }, "<leader>pkt", require("package-info").toggle, { silent = true, noremap = true })
+-- Update dependency on the line
+map({ "n" }, "<leader>pku", require("package-info").update, { silent = true, noremap = true })
+-- Delete dependency on the line
+map({ "n" }, "<leader>pkd", require("package-info").delete, { silent = true, noremap = true })
+-- Install a new dependency
+map({ "n" }, "<leader>pki", require("package-info").install, { silent = true, noremap = true })
+-- Install a different dependency version
+map({ "n" }, "<leader>pkp", require("package-info").change_version, { silent = true, noremap = true })
