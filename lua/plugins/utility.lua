@@ -36,6 +36,11 @@ local plugins = {
       vim.o.foldenable = true
     end,
   },
+  {
+    "uga-rosa/ccc.nvim",
+    cmd = "CccPick",
+    opts = {},
+  },
 }
 
 return plugins
