@@ -54,6 +54,7 @@ local plugins = {
         "docker_compose_language_service",
         "dockerls",
         "gradle_ls",
+        "groovyls",
       },
     },
   },
@@ -92,6 +93,9 @@ local plugins = {
         -- general
         "google-java-format",
         "ktlint",
+
+        -- devops
+        "npm-groovy-lint",
       },
     },
   },
@@ -121,9 +125,15 @@ local plugins = {
         -- web-dev
         "eslint_d",
 
+        -- devops
+        "hadolint",
+        "npm-groovy-lint",
+
         -- general
         "checkstyle",
         "ktlint",
+        "codespell",
+        "proselint",
       },
     },
   },

@@ -12,6 +12,9 @@ lint.linters_by_ft = {
   luau = { "selene" },
   java = { "checkstyle" },
   kotlin = { "ktlint" },
+  dockerfile = { "hadolint" },
+  groovy = { "npm-groovy-lint" },
+  gradle = { "npm-groovy-lint" },
 }
 
 lint.linters.eslint_d.args = {
@@ -31,5 +34,17 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
   group = lint_augroup,
   callback = function()
     lint.try_lint()
+  end,
+})
+
+-- Global linters
+local globalLinters = {
+  "codespell",
+  "proselint",
+}
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+  group = lint_augroup,
+  callback = function()
+    lint.try_lint(globalLinters)
   end,
 })
