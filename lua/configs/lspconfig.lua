@@ -40,6 +40,7 @@ local servers = {
   "svelte",
   "tailwindcss",
   "taplo",
+  "typos_lsp",
   "volar",
   "vtsls",
   "yamlls",

@@ -19,7 +19,6 @@ local options = {
     java = { "google-java-format" },
     kotlin = { "ktlint" },
     groovy = { "npm-groovy-lint" },
-    gradle = { "npm-groovy-lint" },
   },
 
   format_on_save = function(bufnr)

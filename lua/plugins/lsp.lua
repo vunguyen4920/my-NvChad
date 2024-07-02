@@ -49,6 +49,7 @@ local plugins = {
         "kotlin_language_server",
         "taplo",
         "vtsls",
+        "typos_lsp",
 
         -- devops
         "docker_compose_language_service",
