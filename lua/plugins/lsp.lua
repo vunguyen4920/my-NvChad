@@ -133,7 +133,6 @@ local plugins = {
         "checkstyle",
         "ktlint",
         "codespell",
-        "proselint",
       },
     },
   },

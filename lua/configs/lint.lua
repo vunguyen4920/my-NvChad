@@ -40,7 +40,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 -- Global linters
 local globalLinters = {
   "codespell",
-  "proselint",
 }
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
   group = lint_augroup,
