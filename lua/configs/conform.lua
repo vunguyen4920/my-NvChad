@@ -8,6 +8,7 @@ local options = {
     javascript = { "prettier", "eslint_d" },
     javascriptreact = { "prettier", "eslint_d" },
     json = { "prettier" },
+    jsonc = { "prettier" },
     markdown = { "markdownlint" },
     svelte = { "prettier", "eslint_d" },
     typescript = { "prettier", "eslint_d" },
