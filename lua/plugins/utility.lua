@@ -38,8 +38,10 @@ local plugins = {
   },
   {
     "uga-rosa/ccc.nvim",
-    cmd = "CccPick",
     opts = {},
+    keys = {
+      { "<leader>cp", "<cmd>CccPick<cr>", desc = "[C]olor [P]icker" },
+    },
   },
 }
 

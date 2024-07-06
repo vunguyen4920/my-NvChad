@@ -1,4 +1,4 @@
-require("colorizer").setup {
+local options = {
   filetypes = { "*" },
   user_default_options = {
     RGB = true, -- #RGB hex codes
@@ -25,3 +25,5 @@ require("colorizer").setup {
   -- all the sub-options of filetypes apply to buftypes
   buftypes = {},
 }
+
+return options

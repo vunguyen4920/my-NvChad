@@ -1,4 +1,5 @@
 local options = {
+  log_level = vim.log.levels.DEBUG,
   formatters_by_ft = {
     css = { "prettier" },
     scss = { "prettier" },
@@ -55,6 +56,3 @@ end, {
 })
 
 require("conform").setup(options)
-require("conform").formatters.eslint_d = {
-  prepend_args = { "--stdin", "--fix-to-stdout", "--stdin-filename", "$FILENAME", "--cache" },
-}

@@ -12,8 +12,14 @@ local plugins = {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    build = ":TSUpdate",
     opts = function()
-      return require "configs.treesitter"
+      return require "nvchad.configs.treesitter"
+    end,
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
     end,
   },
   {
@@ -37,7 +43,7 @@ local plugins = {
         update_in_insert = true,
       })
     end,
-    event = "BufReadPre",
+    event = "BufReadPost",
   },
   {
     "andersevenrud/nvim_context_vt",
@@ -66,7 +72,7 @@ local plugins = {
     config = function()
       vim.g.skip_ts_context_commentstring_module = true
     end,
-    event = "BufReadPre",
+    event = "BufReadPost",
   },
   {
     "roobert/tailwindcss-colorizer-cmp.nvim",
@@ -98,7 +104,7 @@ local plugins = {
   },
   {
     "echasnovski/mini.move",
-    event = "VeryLazy",
+    event = "BufReadPost",
     opts = {},
   },
   {

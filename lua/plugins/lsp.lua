@@ -61,6 +61,7 @@ local plugins = {
   },
   {
     "neovim/nvim-lspconfig",
+    event = "User FilePost",
     dependencies = { "mfussenegger/nvim-jdtls", "b0o/SchemaStore.nvim" },
     config = function()
       require("nvchad.configs.lspconfig").defaults()
@@ -192,8 +193,19 @@ local plugins = {
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    cmd = "Trouble",
     opts = {},
+    keys = {
+      {
+        "<leader>td",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Trouble Diagnostics Open",
+      },
+      {
+        "<leader>tD",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Trouble Diagnostics Current Buf Open",
+      },
+    },
   },
   {
     "MaximilianLloyd/tw-values.nvim",

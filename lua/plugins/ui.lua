@@ -9,9 +9,18 @@ local plugins = {
   },
   {
     "NvChad/nvim-colorizer.lua",
-    opts = {},
-    config = function()
-      require "configs.colorizer"
+    event = "User FilePost",
+    opts = function()
+      return require "configs.colorizer"
+    end,
+    config = function(_, opts)
+      local colorizer = require "colorizer"
+      colorizer.setup(opts)
+
+      -- execute colorizer as soon as possible
+      vim.defer_fn(function()
+        colorizer.attach_to_buffer(0)
+      end, 0)
     end,
   },
   {
@@ -41,11 +50,6 @@ local plugins = {
       require("satellite").setup {}
     end,
     event = "BufEnter",
-  },
-  {
-    "tzachar/highlight-undo.nvim",
-    opts = {},
-    event = "BufReadPre",
   },
   {
     "Bekaboo/dropbar.nvim",

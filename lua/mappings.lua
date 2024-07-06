@@ -16,36 +16,8 @@ local map = vim.keymap.set
 
 map("n", "<leader>me", "<cmd>set mouse=a<CR>", { desc = "Mouse Enable" })
 map("n", "<leader>md", "<cmd>set mouse=<CR>", { desc = "Mouse Disable" })
-map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>", { desc = "<ESC> Escape Insert mode" })
 map("i", "jj", "<ESC>", { desc = "<ESC> Escape Insert mode" })
-
--- Harpoon
-local harpoon = require "harpoon"
-map("n", "<leader>a", function()
-  harpoon:list():add()
-end, { desc = "Harpoon Add buffer" })
-
-map("n", "<C-a>", function()
-  harpoon.ui:toggle_quick_menu(harpoon:list())
-end, { desc = "Harpoon Quick Menu" })
-
-map("n", "<C-j>", function()
-  harpoon:list():prev()
-end, { desc = "Harpoon cycle backward buffer" })
-
-map("n", "<C-k>", function()
-  harpoon:list():next()
-end, { desc = "Harpoon cycle forward buffer" })
-
--- Trouble.nvim
-map("n", "<leader>tr", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Trouble Diagnostics Open" })
-map(
-  "n",
-  "<leader>tR",
-  "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-  { desc = "Trouble Diagnostics Current Buf Open" }
-)
 
 -- git
 map("n", "<leader>gg", function()
@@ -55,44 +27,6 @@ end, { desc = "Git Neogit Open" })
 map("n", "<leader>ggs", function()
   require("neogit").open { kind = "split" }
 end, { desc = "Git Neogit Open in split" })
-
-map("n", "<leader>gc", function()
-  require("neogit").open { "commit" }
-end, { desc = "Git Neogit Open commit popup" })
-
-map("n", "<leader>h", "<cmd>DiffviewFileHistory %<CR>", { desc = "Git Diffview Current File [H]istory" })
-
-require("gitsigns").setup {
-  on_attach = function(bufnr)
-    local function gitsigns_map(mode, lhs, rhs, opts)
-      opts = vim.tbl_extend("force", { noremap = true, silent = true }, opts or {})
-      vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
-    end
-
-    -- Navigation
-    gitsigns_map("n", "]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
-    gitsigns_map("n", "[c", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
-
-    -- Actions
-    gitsigns_map("n", "<leader>hs", ":Gitsigns stage_hunk<CR>")
-    gitsigns_map("v", "<leader>hs", ":Gitsigns stage_hunk<CR>")
-    gitsigns_map("n", "<leader>hr", ":Gitsigns reset_hunk<CR>")
-    gitsigns_map("v", "<leader>hr", ":Gitsigns reset_hunk<CR>")
-    gitsigns_map("n", "<leader>hS", "<cmd>Gitsigns stage_buffer<CR>")
-    gitsigns_map("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<CR>")
-    gitsigns_map("n", "<leader>hR", "<cmd>Gitsigns reset_buffer<CR>")
-    gitsigns_map("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>")
-    gitsigns_map("n", "<leader>hb", '<cmd>lua require"gitsigns".blame_line{full=true}<CR>')
-    gitsigns_map("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<CR>")
-    gitsigns_map("n", "<leader>hd", "<cmd>Gitsigns diffthis<CR>")
-    gitsigns_map("n", "<leader>hD", '<cmd>lua require"gitsigns".diffthis("~")<CR>')
-    gitsigns_map("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<CR>")
-
-    -- Text object
-    gitsigns_map("o", "ih", ":<C-U>Gitsigns select_hunk<CR>")
-    gitsigns_map("x", "ih", ":<C-U>Gitsigns select_hunk<CR>")
-  end,
-}
 
 -- Formatter
 map("n", "<leader>fme", ":FormatEnable<CR>")
@@ -155,34 +89,6 @@ map("n", "<leader>de", function()
   dapui.toggle {}
   dap.terminate()
 end, { desc = "DAP end" })
-
--- AI
-map("i", "<A-;>", function()
-  return vim.fn["codeium#Accept"]()
-end, { expr = true, silent = true, desc = "AI Codeium Accept" })
-map("n", "<leader>ai", function()
-  return vim.fn["codeium#Chat"]()
-end, { expr = true, silent = true, desc = "AI Codeium Chat" })
-
--- APM
-local apm = require "vim-apm"
-map("n", "<leader>apm", function()
-  apm:toggle_monitor()
-end, { desc = "APM-Monitor Toggle" })
-
--- Flash
-map({ "n", "x", "o" }, "s", function()
-  require("flash").jump()
-end, { desc = "Flash Jump" })
-
-map({ "n", "x", "o" }, "Z", function()
-  require("flash").treesitter()
-end, { desc = "Flash Treesitter" })
-
--- Session Manager
-
--- Games
-map({ "n" }, "<leader>gac", "<cmd>Playtime<CR>", { desc = "[Ga]mes Play Card Games" })
 
 -- Spectre
 local spectre = require "spectre"
@@ -247,9 +153,6 @@ map("n", "<leader>sr", function()
   vim.cmd "RestoreProjectSession"
 end, { desc = "Projects Restore Session" })
 
--- Color Picker
-map({ "n" }, "<leader>cp", "<cmd>CccPick<cr>", { desc = "Pick Color" })
-
 -- NPM Package Info
 -- Show dependency versions
 map(
@@ -259,7 +162,7 @@ map(
   { silent = true, noremap = true }
 )
 -- Hide dependency versions
-map({ "n" }, "<leader>pkc", require("package-info").hide, { silent = true, noremap = true })
+map({ "n" }, "<leader>pkh", require("package-info").hide, { silent = true, noremap = true })
 -- Toggle dependency versions
 map({ "n" }, "<leader>pkt", require("package-info").toggle, { silent = true, noremap = true })
 -- Update dependency on the line
