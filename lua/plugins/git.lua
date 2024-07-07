@@ -30,6 +30,23 @@ local plugins = {
         telescope = true,
       },
     },
+    keys = function()
+      local neogit = require "neogit"
+      return {
+        {
+          "<leader>gg",
+          neogit.open,
+          desc = "Git Neogit Open",
+        },
+        {
+          "<leader>ggs",
+          function()
+            neogit.open { kind = "split" }
+          end,
+          desc = "Git Neogit Open Split",
+        },
+      }
+    end,
   },
 }
 

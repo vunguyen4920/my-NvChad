@@ -57,6 +57,23 @@ local plugins = {
       end, {})
     end,
     branch = "pre_release",
+    keys = {
+      {
+        "<leader>p",
+        "<cmd>Telescope projections<CR>",
+        { desc = "Projects Telescope" },
+      },
+      {
+        "<leader>pa",
+        "<cmd>AddWorkspace<CR>",
+        { desc = "Projects Add Workspace" },
+      },
+      {
+        "<leader>sr",
+        "<cmd>RestoreProjectSession<CR>",
+        { desc = "Projects Restore Session" },
+      },
+    },
   },
 }
 

@@ -6,6 +6,13 @@ local plugins = {
     build = function()
       vim.fn["mkdp#util#install"]()
     end,
+    keys = {
+      {
+        "<leader>mp",
+        "<cmd>MarkdownPreviewToggle<CR>",
+        desc = "Preview Markdown",
+      },
+    },
   },
   {
     "NvChad/nvim-colorizer.lua",
@@ -28,6 +35,36 @@ local plugins = {
     cmd = { "TodoTrouble", "TodoTelescope" },
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
+    keys = function()
+      local todo_comments = require "todo-comments"
+
+      return {
+        {
+          "]t",
+          function()
+            todo_comments.jump_next()
+          end,
+          desc = "Todo Jump next",
+        },
+        {
+          "[t",
+          function()
+            todo_comments.jump_prev()
+          end,
+          desc = "Todo Jump previous",
+        },
+        {
+          "<leader>ton",
+          "<cmd>TodoTelescope keywords=NOTE<CR>",
+          desc = "[To]do Telescope [N]ote",
+        },
+        {
+          "<leader>tot",
+          "<cmd>TodoTelescope keywords=TODO<CR>",
+          desc = "[To]do Telescope [T]odo",
+        },
+      }
+    end,
   },
   {
     "nvim-telescope/telescope-ui-select.nvim",

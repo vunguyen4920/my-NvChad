@@ -49,7 +49,6 @@ local plugins = {
         "kotlin_language_server",
         "taplo",
         "vtsls",
-        "typos_lsp",
 
         -- devops
         "docker_compose_language_service",
@@ -134,7 +133,6 @@ local plugins = {
         -- general
         "checkstyle",
         "ktlint",
-        "codespell",
       },
     },
   },
@@ -143,6 +141,72 @@ local plugins = {
     opts = {},
     config = function()
       require "configs.dap"
+    end,
+    keys = function()
+      local dap = require "dap"
+      local dapui = require "dapui"
+
+      return {
+        {
+          "<leader>ds",
+          function()
+            dap.continue()
+            dapui.toggle {}
+          end,
+          desc = "DAP Start",
+        },
+        {
+          "<leader>dc",
+          function()
+            dap.continue()
+          end,
+          desc = "DAP Continue",
+        },
+        {
+          "<leader>do",
+          function()
+            dap.step_over()
+          end,
+          desc = "DAP Step Over",
+        },
+        {
+          "<leader>di",
+          function()
+            dap.step_into()
+          end,
+          desc = "DAP Step Into",
+        },
+        {
+          "<leader>du",
+          function()
+            dap.step_out()
+          end,
+          desc = "DAP Step Out",
+        },
+        {
+          "<leader>db",
+          function()
+            dap.toggle_breakpoint()
+          end,
+          desc = "DAP Toggle Debug breakpoint",
+        },
+        {
+          "<leader>dB",
+          function()
+            dap.set_breakpoint(nil, nil, vim.fn.input "Log point message: ")
+          end,
+          desc = "DAP Set Debug breakpoint with message",
+        },
+        {
+          "<leader>de",
+          function()
+            dap.clear_breakpoints()
+            dapui.toggle {}
+            dap.terminate()
+          end,
+          desc = "DAP end",
+        },
+      }
     end,
   },
   {
@@ -296,7 +360,83 @@ local plugins = {
       }
     end,
   },
-  { "chrisgrieser/nvim-chainsaw" },
+  {
+    "chrisgrieser/nvim-chainsaw",
+    opts = {
+      marker = "🚀",
+    },
+    config = function(_, opts)
+      require("chainsaw").setup(opts)
+    end,
+    keys = function()
+      local chainsaw = require "chainsaw"
+      return {
+        {
+          "<leader>cv",
+          function()
+            chainsaw.variableLog()
+          end,
+          desc = "Chainsaw Variable Log",
+        },
+        {
+          "<leader>co",
+          function()
+            chainsaw.objectLog()
+          end,
+          desc = "Chainsaw Object Log",
+        },
+        {
+          "<leader>cs",
+          function()
+            chainsaw.stacktraceLog()
+          end,
+          desc = "Chainsaw Stacktrace Log",
+        },
+        {
+          "<leader>cas",
+          function()
+            chainsaw.assertLog()
+          end,
+          desc = "Chainsaw Assert Log",
+        },
+        {
+          "<leader>cm",
+          function()
+            chainsaw.messageLog()
+          end,
+          desc = "Chainsaw Message Log",
+        },
+        {
+          "<leader>cb",
+          function()
+            chainsaw.beepLog()
+          end,
+          desc = "Chainsaw Beep Log",
+        },
+        {
+          "<leader>ct",
+          function()
+            chainsaw.timeLog()
+          end,
+          desc = "Chainsaw Time Log",
+        },
+        {
+          "<leader>cd",
+          function()
+            chainsaw.debugLog()
+          end,
+          desc = "Chainsaw Debug Log",
+        },
+        {
+          "<leader>cr",
+          function()
+            chainsaw.removeLogs()
+          end,
+          desc = "Chainsaw Remove Logs",
+        },
+      }
+    end,
+  },
   { "kevinhwang91/nvim-bqf", ft = "qf" },
   { "yorickpeterse/nvim-pqf", ft = "qf" },
   {
@@ -320,6 +460,44 @@ local plugins = {
     "vuki656/package-info.nvim",
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {},
+    keys = {
+      {
+        "<leader>pks",
+        "<cmd>lua require('package-info').show({ force = true })<cr>",
+        silent = true,
+        noremap = true,
+      },
+      {
+        "<leader>pkh",
+        require("package-info").hide,
+        silent = true,
+        noremap = true,
+      },
+      {
+        "<leader>pku",
+        require("package-info").update,
+        silent = true,
+        noremap = true,
+      },
+      {
+        "<leader>pkd",
+        require("package-info").delete,
+        silent = true,
+        noremap = true,
+      },
+      {
+        "<leader>pki",
+        require("package-info").install,
+        silent = true,
+        noremap = true,
+      },
+      {
+        "<leader>pkp",
+        require("package-info").change_version,
+        silent = true,
+        noremap = true,
+      },
+    },
   },
 }
 

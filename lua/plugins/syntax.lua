@@ -53,6 +53,11 @@ local plugins = {
     end,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     event = "BufReadPost",
+    keys = {
+      "<leader>tc",
+      "<cmd>TSContextToggle<CR>",
+      desc = "Treesitter Context Toggle",
+    },
   },
   {
     "nvim-treesitter/nvim-treesitter-context",

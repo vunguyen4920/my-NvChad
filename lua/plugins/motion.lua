@@ -20,6 +20,16 @@ local plugins = {
     "folke/flash.nvim",
     event = "BufEnter",
     ---@type Flash.Config
+    opts = {
+      modes = {
+        search = {
+          enabled = true,
+        },
+        char = {
+          jump_labels = true,
+        },
+      },
+    },
     keys = {
       {
         mode = { "n", "x", "o" },
