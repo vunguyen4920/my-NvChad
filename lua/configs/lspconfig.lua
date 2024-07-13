@@ -40,7 +40,8 @@ local servers = {
   "svelte",
   "tailwindcss",
   "taplo",
-  "volar",
+  -- "volar", -- vue >= 2.7 & vue >= 3.0
+  "vuels", -- vue < 2.7
   "vtsls",
   "yamlls",
 }
@@ -101,10 +102,53 @@ local mason_registry = require "mason-registry"
 local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
   .. "/node_modules/@vue/language-server"
 
-lspconfig.volar.setup {
+-- vue >= 3.0 & vue >= 2.7
+--[[ lspconfig.volar.setup {
   init_options = {
     vue = {
       hybridMode = false,
+    },
+  },
+} ]]
+
+-- vue < 2.7
+lspconfig.vuels.setup {
+  init_options = {
+    config = {
+      css = {},
+      emmet = {},
+      html = {
+        suggest = {},
+      },
+      javascript = {
+        format = {},
+      },
+      stylusSupremacy = {},
+      typescript = {
+        format = {},
+      },
+      vetur = {
+        completion = {
+          autoImport = true,
+          tagCasing = "kebab",
+          useScaffoldSnippets = false,
+        },
+        format = {
+          defaultFormatter = {
+            js = "none",
+            ts = "none",
+          },
+          defaultFormatterOptions = {},
+          scriptInitialIndent = false,
+          styleInitialIndent = false,
+        },
+        useWorkspaceDependencies = false,
+        validation = {
+          script = true,
+          style = true,
+          template = true,
+        },
+      },
     },
   },
 }
@@ -195,7 +239,7 @@ lspconfig.vtsls.setup {
     "typescript",
     "typescriptreact",
     "typescript.tsx",
-    "vue",
+    -- "vue",
   },
 }
 

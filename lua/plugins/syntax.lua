@@ -1,4 +1,3 @@
--- TODO: Text objects
 local plugins = {
   {
     "kylechui/nvim-surround",
@@ -16,11 +15,16 @@ local plugins = {
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
     opts = function()
-      return require "nvchad.configs.treesitter"
+      return require "configs.treesitter"
     end,
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
     end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    event = "BufReadPost",
   },
   {
     "windwp/nvim-ts-autotag",
@@ -54,9 +58,11 @@ local plugins = {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     event = "BufReadPost",
     keys = {
-      "<leader>tc",
-      "<cmd>TSContextToggle<CR>",
-      desc = "Treesitter Context Toggle",
+      {
+        "<leader>tc",
+        "<cmd>TSContextToggle<CR>",
+        desc = "Treesitter Context Toggle",
+      },
     },
   },
   {
@@ -129,7 +135,7 @@ local plugins = {
         desc = "Open Yank History",
       },
         -- stylua: ignore
-    { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank Text" },
+      { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank Text" },
       { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, desc = "Put Yanked Text After Cursor" },
       { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" }, desc = "Put Yanked Text Before Cursor" },
       { "gp", "<Plug>(YankyGPutAfter)", mode = { "n", "x" }, desc = "Put Yanked Text After Selection" },

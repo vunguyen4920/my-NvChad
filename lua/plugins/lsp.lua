@@ -34,6 +34,7 @@ local plugins = {
         "svelte",
         "tailwindcss",
         "volar",
+        "vuels",
         "yamlls",
         "astro",
 
