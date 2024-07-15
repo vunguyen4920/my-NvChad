@@ -39,7 +39,7 @@ local plugins = {
           desc = "Git Neogit Open",
         },
         {
-          "<leader>ggs",
+          "<leader>gs",
           function()
             neogit.open { kind = "split" }
           end,
