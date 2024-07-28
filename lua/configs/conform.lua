@@ -55,4 +55,6 @@ end, {
   desc = "Re-enable autoformat-on-save",
 })
 
+vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+
 require("conform").setup(options)
