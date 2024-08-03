@@ -6,6 +6,11 @@ local plugins = {
     end,
     event = "BufEnter",
   },
+  {
+    "iamyoki/buffer-reopen.nvim",
+    event = "BufEnter",
+    opts = {},
+  },
 }
 
 return plugins
