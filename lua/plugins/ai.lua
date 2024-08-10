@@ -4,7 +4,6 @@ local plugins = {
     cmd = "Codeium",
     event = "BufEnter",
     build = ":Codeium Auth",
-
     keys = {
       {
         mode = { "i" },
