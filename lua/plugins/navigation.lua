@@ -5,7 +5,7 @@ local plugins = {
       "nvim-treesitter/nvim-treesitter", --- Recommended
     },
     enabled = true,
-    lazy = false, -- NOTE: NO NEED to Lazy load
+    event = "BufReadPost",
     init = function()
       vim.opt.wrap = false -- Recommended
       vim.opt.sidescrolloff = 36 -- It's recommended to set a large value
@@ -56,80 +56,65 @@ local plugins = {
     end,
   },
   {
-    "gnikdroy/projections.nvim",
-    cmd = { "StoreProjectSession", "RestoreProjectSession", "AddWorkspace" },
+    "olimorris/persisted.nvim",
+    lazy = false, -- make sure the plugin is always loaded at startup
     opts = {
-      store_hooks = {
-        pre = function()
-          -- nvim-tree
-          local nvim_tree_present, api = pcall(require, "nvim-tree.api")
-          if nvim_tree_present then
-            api.tree.close()
-          end
-        end,
-      },
-      workspaces = {
-        { "~/projects", {} },
-        { "~/.config", {} },
-      },
-      patterns = { ".git", ".svn", ".hg", "package.json", "pom.xml" },
+      use_git_branch = true,
+      should_save = function()
+        -- Do not save if the alpha dashboard is the current filetype
+        if vim.bo.filetype == "nvdash" then
+          return false
+        end
+        return true
+      end,
     },
     config = function(_, opts)
-      require("projections").setup(opts)
-
-      -- Bind <leader>fp to Telescope projections
-      require("telescope").load_extension "projections"
-
-      -- Autostore session on VimExit
-      local Session = require "projections.session"
-      vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
-        callback = function()
-          Session.store(vim.loop.cwd())
-        end,
-      })
-
-      -- Switch to project if vim was started in a project dir
-      local switcher = require "projections.switcher"
-      vim.api.nvim_create_autocmd({ "VimEnter" }, {
-        callback = function()
-          if vim.fn.argc() == 0 then
-            switcher.switch(vim.loop.cwd())
-          end
-        end,
-      })
-
-      vim.api.nvim_create_user_command("StoreProjectSession", function()
-        Session.store(vim.loop.cwd())
-      end, {})
-
-      vim.api.nvim_create_user_command("RestoreProjectSession", function()
-        Session.restore(vim.loop.cwd())
-      end, {})
-
-      local Workspace = require "projections.workspace"
-      -- Add workspace command
-      vim.api.nvim_create_user_command("AddWorkspace", function()
-        Workspace.add(vim.loop.cwd())
-      end, {})
+      require("persisted").setup(opts)
+      require("telescope").setup {
+        extensions = {
+          persisted = {
+            layout_config = { width = 0.55, height = 0.55 },
+          },
+        },
+      }
     end,
-    branch = "pre_release",
-    keys = {
-      {
-        "<leader>p",
-        "<cmd>Telescope projections<CR>",
-        { desc = "Projects Telescope" },
-      },
-      {
-        "<leader>pa",
-        "<cmd>AddWorkspace<CR>",
-        { desc = "Projects Add Workspace" },
-      },
-      {
-        "<leader>sr",
-        "<cmd>RestoreProjectSession<CR>",
-        { desc = "Projects Restore Session" },
-      },
-    },
+    keys = function()
+      return {
+        {
+          "<leader>st",
+          "<cmd>SessionToggle<CR>",
+          { desc = "[S]ession [T]oggle" },
+        },
+        {
+          "<leader>sr",
+          "<cmd>SessionLoad<CR>",
+          { desc = "[S]ession [R]estore" },
+        },
+        {
+          "<leader>sl",
+          "<cmd>SessionLoadLast<CR>",
+          { desc = "[S]ession Load [L]ast" },
+        },
+        {
+          "<leader>sx",
+          "<cmd>SessionDelete<CR>",
+          { desc = "[S]ession Delete" },
+        },
+        {
+          "<leader>ss",
+          "<cmd>Telescope persisted<CR>",
+          { desc = "[S]ession [S]elect" },
+        },
+      }
+    end,
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    opts = function()
+      return require "configs.nvimtree"
+    end,
   },
 }
+
 return plugins

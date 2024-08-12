@@ -251,4 +251,19 @@ if in_wsl then
   }
 end
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "nvdash",
+  callback = function()
+    vim.opt.laststatus = 0
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufWinLeave", {
+  callback = function()
+    if vim.bo.ft == "nvdash" then
+      vim.opt.laststatus = 3
+    end
+  end,
+})
+
 return M
