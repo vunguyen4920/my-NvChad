@@ -91,6 +91,7 @@ local plugins = {
 
         -- web-dev
         "prettier",
+        "eslint_d",
 
         -- general
         "google-java-format",
@@ -125,10 +126,8 @@ local plugins = {
         "markdownlint",
 
         -- web-dev
-        "eslint_d",
 
         -- devops
-        "hadolint",
         "npm-groovy-lint",
 
         -- general

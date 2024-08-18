@@ -16,13 +16,15 @@ local options = {
     typescriptreact = { "prettier", "eslint_d" },
     vue = { "prettier", "eslint_d" },
     xml = { "prettier" },
-    yaml = { "prettier", "prettier" },
+    yaml = { "prettier" },
     lua = { "stylua" },
     java = { "google-java-format" },
     kotlin = { "ktlint" },
     groovy = { "npm-groovy-lint" },
   },
-
+  default_format_opts = {
+    lsp_format = "fallback",
+  },
   format_on_save = function(bufnr)
     -- Disable with a global or buffer-local variable
     if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
@@ -30,9 +32,8 @@ local options = {
     end
 
     return {
-      timeout_ms = 5000,
-      async = false,
-      lsp_fallback = true,
+      timeout_ms = 1500,
+      lsp_format = "fallback",
     }
   end,
 }

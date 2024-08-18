@@ -6,8 +6,6 @@ lint.linters_by_ft = {
   luau = { "selene" },
   java = { "checkstyle" },
   kotlin = { "ktlint" },
-  dockerfile = { "hadolint" },
-  groovy = { "npm-groovy-lint" },
 }
 
 -- Global linters
