@@ -26,9 +26,11 @@ local plugins = {
         mode = { "n", "x", "o" },
         "Z",
         function()
-          require("flash").treesitter()
+          require("flash").jump {
+            pattern = vim.fn.expand "<cword>",
+          }
         end,
-        desc = "Flash Treesitter",
+        desc = "Flash Remote",
       },
     },
   },
