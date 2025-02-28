@@ -90,7 +90,7 @@ local plugins = {
     config = function()
       require("fidget").setup()
     end,
-    event = "BufEnter",
+    event = "LspAttach",
   },
   {
     "lewis6991/satellite.nvim",
