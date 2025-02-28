@@ -28,91 +28,63 @@ local plugins = {
 
       return {
         {
-          "<leader>a",
+          "<leader>hm",
           function()
             harpoon:list():add()
           end,
-          desc = "Harpoon [A]dd",
+          desc = "Harpoon [M]ark",
         },
         {
-          "<C-a>",
+          "<leader>hl",
           function()
             toggle_telescope(harpoon:list())
           end,
-          desc = "Harpoon Menu",
+          desc = "Harpoon Telescope [L]ist",
         },
         {
-          "<C-q>",
+          "<leader>hq",
           function()
             harpoon.ui:toggle_quick_menu(harpoon:list())
           end,
           desc = "Harpoon [Q]uick Menu",
         },
         {
-          "<A-q>",
+          "<M-q>",
           function()
             harpoon:list():select(1)
           end,
           desc = "Harpoon Select 1",
         },
         {
-          "<A-w>",
+          "<M-w>",
           function()
             harpoon:list():select(2)
           end,
           desc = "Harpoon Select 2",
         },
         {
-          "<A-e>",
+          "<M-e>",
           function()
             harpoon:list():select(3)
           end,
           desc = "Harpoon Select 3",
         },
         {
-          "<A-r>",
+          "<M-r>",
           function()
             harpoon:list():select(4)
           end,
           desc = "Harpoon Select 4",
         },
         {
-          "<A-a>",
-          function()
-            harpoon:list():select(5)
-          end,
-          desc = "Harpoon Select 5",
-        },
-        {
-          "<A-s>",
-          function()
-            harpoon:list():select(6)
-          end,
-          desc = "Harpoon Select 6",
-        },
-        {
-          "<A-d>",
-          function()
-            harpoon:list():select(7)
-          end,
-          desc = "Harpoon Select 7",
-        },
-        {
-          "<A-f>",
-          function()
-            harpoon:list():select(8)
-          end,
-          desc = "Harpoon Select 8",
-        },
-        {
-          "<C-k>",
+          "<C-[>",
           function()
             harpoon:list():prev()
           end,
           desc = "Harpoon Prev",
         },
         {
-          "<C-j>",
+          "<C-]>",
           function()
             harpoon:list():next()
           end,
