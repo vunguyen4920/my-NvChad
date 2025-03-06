@@ -1,7 +1,7 @@
 local plugins = {
   {
     "OXY2DEV/markview.nvim",
-    ft = "markdown", -- If you decide to lazy-load anyway
+    lazy = false,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",
@@ -11,16 +11,8 @@ local plugins = {
       local markview = require "markview"
 
       markview.setup {
-        headings = presets.headings.glow_labels,
-        modes = { "n", "i", "no", "c" },
-        hybrid_modes = { "i" },
-
-        -- This is nice to have
-        callbacks = {
-          on_enable = function(_, win)
-            vim.wo[win].conceallevel = 2
-            vim.wo[win].concealcursor = "nc"
-          end,
+        markdown = {
+          headings = presets.headings.slanted,
         },
       }
     end,
