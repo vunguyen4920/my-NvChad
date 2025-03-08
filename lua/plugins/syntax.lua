@@ -198,6 +198,12 @@ local plugins = {
       vim.o.foldenable = true
     end,
   },
+  {
+    "davidmh/mdx.nvim",
+    event = "BufEnter *.mdx",
+    config = true,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  },
 }
 
 return plugins

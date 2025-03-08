@@ -35,6 +35,7 @@ local servers = {
   "lemminx",
   "lua_ls",
   "marksman",
+  "mdx_analyzer",
   "prismals",
   "somesass_ls",
   "svelte",

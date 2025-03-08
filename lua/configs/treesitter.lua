@@ -24,6 +24,7 @@ local options = {
 
     -- documentation
     "markdown",
+    "markdown_inline",
     "mermaid",
     "jsdoc",
     "luadoc",

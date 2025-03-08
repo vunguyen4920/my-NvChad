@@ -44,6 +44,7 @@ local plugins = {
 
         -- documentation
         "marksman",
+        "mdx_analyzer",
 
         -- general purpose
         "jdtls",
