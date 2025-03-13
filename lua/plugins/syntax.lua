@@ -204,6 +204,25 @@ local plugins = {
     config = true,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
+  {
+    "nat-418/boole.nvim",
+    event = "BufEnter",
+    opts = {
+      mappings = {
+        increment = "<C-a>",
+        decrement = "<C-x>",
+      },
+      -- User defined loops
+      additions = {
+        { "isEnable", "isDisable" },
+      },
+      allow_caps_additions = {
+        { "enable", "disable" },
+        { "foo", "bar" },
+        { "tic", "tac", "toe" },
+      },
+    },
+  },
 }
 
 return plugins
