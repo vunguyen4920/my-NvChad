@@ -203,12 +203,18 @@ local random_header = {
   },
 }
 
-M.ui = {
+M.base46 = {
   theme = "tokyodark",
+}
 
-  nvdash = {
-    header = random_header[math.random(1, #random_header)],
-    load_on_startup = true,
+M.nvdash = {
+  load_on_startup = true,
+  header = random_header[math.random(1, #random_header)],
+}
+
+M.ui = {
+  cmp = {
+    style = "atom_colored",
   },
 
   hl_override = {
@@ -251,17 +257,34 @@ if in_wsl then
   }
 end
 
-vim.api.nvim_create_autocmd("FileType", {
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd("FileType", {
   pattern = "nvdash",
   callback = function()
     vim.opt.laststatus = 0
   end,
 })
 
-vim.api.nvim_create_autocmd("BufWinLeave", {
+autocmd("BufWinLeave", {
   callback = function()
     if vim.bo.ft == "nvdash" then
       vim.opt.laststatus = 3
+    end
+  end,
+})
+
+autocmd("BufReadPost", {
+  pattern = "*",
+  callback = function()
+    local line = vim.fn.line "'\""
+    if
+      line > 1
+      and line <= vim.fn.line "$"
+      and vim.bo.filetype ~= "commit"
+      and vim.fn.index({ "xxd", "gitrebase" }, vim.bo.filetype) == -1
+    then
+      vim.cmd 'normal! g`"'
     end
   end,
 })

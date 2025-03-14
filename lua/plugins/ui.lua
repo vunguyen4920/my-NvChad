@@ -18,22 +18,6 @@ local plugins = {
     end,
   },
   {
-    "NvChad/nvim-colorizer.lua",
-    event = "User FilePost",
-    opts = function()
-      return require "configs.colorizer"
-    end,
-    config = function(_, opts)
-      local colorizer = require "colorizer"
-      colorizer.setup(opts)
-
-      -- execute colorizer as soon as possible
-      vim.defer_fn(function()
-        colorizer.attach_to_buffer(0)
-      end, 0)
-    end,
-  },
-  {
     "folke/todo-comments.nvim",
     cmd = { "TodoTrouble", "TodoTelescope" },
     dependencies = { "nvim-lua/plenary.nvim" },

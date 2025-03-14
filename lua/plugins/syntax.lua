@@ -88,15 +88,6 @@ local plugins = {
     event = "BufReadPost",
   },
   {
-    "roobert/tailwindcss-colorizer-cmp.nvim",
-    -- optionally, override the default options:
-    config = function()
-      require("tailwindcss-colorizer-cmp").setup {
-        color_square_width = 3,
-      }
-    end,
-  },
-  {
     "numToStr/Comment.nvim",
     config = function()
       local prehook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
