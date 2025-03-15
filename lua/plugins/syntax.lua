@@ -2,7 +2,7 @@ local plugins = {
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "BufReadPre",
+    event = "InsertEnter",
     config = function()
       require("nvim-surround").setup {
         -- Configuration here, or leave empty to use defaults
@@ -30,6 +30,7 @@ local plugins = {
   },
   {
     "windwp/nvim-ts-autotag",
+    event = "InsertEnter",
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
       require("nvim-ts-autotag").setup {
@@ -49,7 +50,6 @@ local plugins = {
         update_in_insert = true,
       })
     end,
-    event = "BufReadPost",
   },
   {
     "andersevenrud/nvim_context_vt",
@@ -99,8 +99,7 @@ local plugins = {
         post_hook = nil,
       }
     end,
-    event = "BufReadPre",
-    lazy = false,
+    event = "BufReadPost",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "JoosepAlviste/nvim-ts-context-commentstring",
@@ -213,6 +212,14 @@ local plugins = {
         { "tic", "tac", "toe" },
       },
     },
+  },
+  {
+    "hiphish/rainbow-delimiters.nvim",
+    event = "BufReadPost",
+    config = function()
+      dofile(vim.g.base46_cache .. "rainbowdelimiters")
+    end,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
 }
 

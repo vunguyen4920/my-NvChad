@@ -248,6 +248,10 @@ local plugins = {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},
+    config = function(_, opts)
+      require("trouble").setup(opts)
+      dofile(vim.g.base46_cache .. "trouble")
+    end,
     keys = {
       {
         "<leader>td",
@@ -346,7 +350,10 @@ local plugins = {
     opts = {},
     config = function()
       require("neodev").setup {
-        library = { plugins = { "nvim-dap-ui" }, types = true },
+        library = { enabled = true, runtime = true, plugins = { "nvim-dap-ui" }, types = true },
+        setup_jsonls = true,
+        lspconfig = true,
+        pathStrict = true,
       }
     end,
   },

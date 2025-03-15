@@ -6,9 +6,13 @@ local plugins = {
     opts = {
       enhanced_diff_hl = true,
     },
+    config = function(_, opts)
+      require("diffview").setup(opts)
+      dofile(vim.g.base46_cache .. "diffview")
+    end,
     keys = {
       {
-        "<leader>h",
+        "<leader>gh",
         "<cmd>DiffviewFileHistory %<CR>",
         desc = "Git Diffview Current File [H]istory",
       },
@@ -23,6 +27,11 @@ local plugins = {
       -- Only one of these is needed, not both.
       "nvim-telescope/telescope.nvim", -- optional
     },
+    config = function(_, opts)
+      require("neogit").setup(opts)
+      dofile(vim.g.base46_cache .. "git")
+      dofile(vim.g.base46_cache .. "neogit")
+    end,
     opts = {
       graph_style = "unicode",
       integrations = {
