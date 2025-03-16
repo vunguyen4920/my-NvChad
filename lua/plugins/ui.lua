@@ -15,6 +15,8 @@ local plugins = {
           headings = presets.headings.slanted,
         },
       }
+
+      dofile(vim.g.base46_cache .. "markview")
     end,
   },
   {

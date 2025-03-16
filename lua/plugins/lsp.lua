@@ -142,6 +142,7 @@ local plugins = {
     opts = {},
     config = function()
       require "configs.dap"
+      dofile(vim.g.base46_cache .. "dap")
     end,
     keys = function()
       local dap = require "dap"

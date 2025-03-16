@@ -30,6 +30,7 @@ local plugins = {
     config = function(_, opts)
       require("neogit").setup(opts)
       dofile(vim.g.base46_cache .. "git")
+      dofile(vim.g.base46_cache .. "git-conflict")
       dofile(vim.g.base46_cache .. "neogit")
     end,
     opts = {
