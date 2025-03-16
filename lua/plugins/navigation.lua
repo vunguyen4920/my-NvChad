@@ -47,15 +47,6 @@ local plugins = {
     end,
   },
   {
-    "karb94/neoscroll.nvim",
-    event = "BufReadPre",
-    config = function()
-      require("neoscroll").setup {
-        easing_function = "sine",
-      }
-    end,
-  },
-  {
     "olimorris/persisted.nvim",
     lazy = false, -- make sure the plugin is always loaded at startup
     opts = {
