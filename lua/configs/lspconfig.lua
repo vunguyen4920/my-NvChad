@@ -1,7 +1,11 @@
+-- load defaults i.e lua_lsp
+require("nvchad.configs.lspconfig").defaults()
+local nvlsp = require "nvchad.configs.lspconfig"
+
 -- EXAMPLE
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local on_init = require("nvchad.configs.lspconfig").on_init
-local capabilities = require("nvchad.configs.lspconfig").capabilities
+local on_attach = nvlsp.on_attach
+local on_init = nvlsp.on_init
+local capabilities = nvlsp.capabilities
 
 -- LSP INLAY HINT
 vim.api.nvim_create_autocmd("LspAttach", {

@@ -65,7 +65,6 @@ local plugins = {
     event = "User FilePost",
     dependencies = { "mfussenegger/nvim-jdtls", "b0o/SchemaStore.nvim" },
     config = function()
-      require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
   },
@@ -73,9 +72,7 @@ local plugins = {
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
-    config = function()
-      require "configs.conform"
-    end,
+    opts = require "configs.conform",
   },
   {
     "zapling/mason-conform.nvim",
