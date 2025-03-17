@@ -1,5 +1,4 @@
-local options = {
-  -- log_level = vim.log.levels.DEBUG,
+local options = { -- log_level = vim.log.levels.DEBUG,
   formatters_by_ft = {
     css = { "prettier" },
     scss = { "prettier" },
@@ -58,4 +57,4 @@ end, {
 
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
-require("conform").setup(options)
+return options
