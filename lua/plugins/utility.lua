@@ -20,7 +20,7 @@ local plugins = {
   },
   {
     "folke/snacks.nvim",
-    event = "BufEnter",
+    event = "VeryLazy",
     ---@type snacks.Config
     opts = {
       image = { enabled = true },

@@ -1,23 +1,11 @@
 local plugins = {
   {
-    "OXY2DEV/markview.nvim",
-    lazy = false,
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
+    -- Make sure to set this up properly if you have lazy=true
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {
+      file_types = { "markdown", "Avante" },
     },
-    config = function()
-      local presets = require "markview.presets"
-      local markview = require "markview"
-
-      markview.setup {
-        markdown = {
-          headings = presets.headings.slanted,
-        },
-      }
-
-      dofile(vim.g.base46_cache .. "markview")
-    end,
+    ft = { "markdown", "Avante" },
   },
   {
     "folke/todo-comments.nvim",

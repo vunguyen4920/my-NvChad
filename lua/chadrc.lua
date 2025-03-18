@@ -11,7 +11,6 @@ M.base46 = {
     "dap",
     "diffview",
     "git-conflict",
-    "markview",
     "neogit",
     "rainbowdelimiters",
     "semantic_tokens",
