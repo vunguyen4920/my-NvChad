@@ -29,19 +29,7 @@ local plugins = {
       input = { enabled = true },
       rename = { enabled = true },
       scope = { enabled = true },
-      scroll = {
-        enabled = true,
-        animate = {
-          duration = { step = 15, total = 250 },
-          easing = "outQuint",
-        },
-        -- faster animation when repeating scroll after delay
-        animate_repeat = {
-          delay = 100, -- delay in ms before using the repeat animation
-          duration = { step = 5, total = 50 },
-          easing = "inOutBounce",
-        },
-      },
+      scroll = { enabled = true },
     },
     init = function()
       local prev = { new_name = "", old_name = "" } -- Prevents duplicate events
