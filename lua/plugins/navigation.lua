@@ -68,6 +68,29 @@ local plugins = {
           },
         },
       }
+
+      local ignored_filetypes = {
+        ["qf"] = true,
+        ["netrw"] = true,
+        ["NvimTree"] = true,
+        ["lazy"] = true,
+        ["mason"] = true,
+        ["oil"] = true,
+        ["harpoon"] = true,
+        ["spectre_panel"] = true,
+        ["NeogitPopup"] = true,
+        ["NeogitStatus"] = true,
+      }
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "PersistedSavePre",
+        callback = function()
+          for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+            if ignored_filetypes[vim.bo[buf].filetype] then
+              vim.api.nvim_buf_delete(buf, { force = true })
+            end
+          end
+        end,
+      })
     end,
     keys = function()
       return {

@@ -2,7 +2,7 @@ local plugins = {
   { "andweeb/presence.nvim", opts = {} },
   {
     "sphamba/smear-cursor.nvim",
-    event = "BufEnter",
+    lazy = false,
     opts = {},
   },
 }
