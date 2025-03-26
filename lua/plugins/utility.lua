@@ -24,12 +24,14 @@ local plugins = {
     lazy = false,
     ---@type snacks.Config
     opts = {
+      bigfile = { enabled = true },
       image = { enabled = true },
       indent = { enabled = true },
       input = { enabled = true },
       rename = { enabled = true },
       scope = { enabled = true },
       scroll = { enabled = true },
+      statuscolumn = { enabled = true },
     },
     init = function()
       local prev = { new_name = "", old_name = "" } -- Prevents duplicate events
