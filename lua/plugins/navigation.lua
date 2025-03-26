@@ -80,6 +80,10 @@ local plugins = {
         ["spectre_panel"] = true,
         ["NeogitPopup"] = true,
         ["NeogitStatus"] = true,
+        ["Outline"] = true,
+        ["Avante"] = true,
+        ["AvanteInput"] = true,
+        ["AvanteSelectedFiles"] = true,
       }
       vim.api.nvim_create_autocmd("User", {
         pattern = "PersistedSavePre",
@@ -133,6 +137,17 @@ local plugins = {
     opts = function()
       return require "configs.nvimtree"
     end,
+  },
+  {
+    "hedyhli/outline.nvim",
+    lazy = true,
+    cmd = { "Outline", "OutlineOpen" },
+    keys = { -- Example mapping to toggle outline
+      { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+    },
+    opts = {
+      -- Your setup opts here
+    },
   },
 }
 

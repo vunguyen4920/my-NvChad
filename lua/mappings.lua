@@ -22,3 +22,5 @@ map("i", "jj", "<ESC>", { desc = "<ESC> Escape Insert mode" })
 -- Formatter
 map("n", "<leader>fme", ":FormatEnable<CR>")
 map("n", "<leader>fmd", ":FormatDisable<CR>")
+
+map("n", "<leader>ft", ":echo &filetype<CR>", { desc = "Show current filetype" })

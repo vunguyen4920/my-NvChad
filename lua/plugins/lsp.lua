@@ -9,13 +9,13 @@ local plugins = {
   },
   {
     "b0o/SchemaStore.nvim",
-    lazy = true,
+    event = "LspAttach",
     version = false, -- last release is way too old
   },
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim" },
-    event = "BufReadPre",
+    event = "VeryLazy",
     opts = {
       ensure_installed = {
         -- defaults
@@ -77,8 +77,7 @@ local plugins = {
   {
     "zapling/mason-conform.nvim",
     dependencies = { "williamboman/mason.nvim" },
-    lazy = true,
-    event = "BufReadPre",
+    event = "VeryLazy",
     opts = {
       ensure_installed = {
         -- defaults
@@ -113,8 +112,7 @@ local plugins = {
   {
     "rshkarin/mason-nvim-lint",
     dependencies = { "williamboman/mason.nvim" },
-    lazy = true,
-    event = "BufReadPre",
+    event = "VeryLazy",
     opts = {
       ensure_installed = {
         -- defaults
@@ -136,6 +134,7 @@ local plugins = {
   },
   {
     "mfussenegger/nvim-dap",
+    event = "LspAttach",
     opts = {},
     config = function()
       require "configs.dap"
@@ -211,8 +210,7 @@ local plugins = {
   {
     "jay-babu/mason-nvim-dap.nvim",
     dependencies = { "williamboman/mason.nvim" },
-    lazy = true,
-    event = "BufReadPre",
+    event = "VeryLazy",
     opts = {
       ensure_installed = {
         -- defaults
@@ -228,10 +226,11 @@ local plugins = {
       },
     },
   },
-  { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
-  { "theHamsta/nvim-dap-virtual-text", dependencies = { "mfussenegger/nvim-dap" } },
+  { "rcarriga/nvim-dap-ui", event = "LspAttach", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
+  { "theHamsta/nvim-dap-virtual-text", event = "LspAttach", dependencies = { "mfussenegger/nvim-dap" } },
   {
     "nvim-telescope/telescope-dap.nvim",
+    event = "LspAttach",
     dependencies = { "mfussenegger/nvim-dap" },
     config = function()
       require("telescope").load_extension "dap"
@@ -240,7 +239,7 @@ local plugins = {
   {
     "dmmulroy/ts-error-translator.nvim",
     opts = {},
-    event = "BufReadPost",
+    event = "LspAttach",
   },
   {
     "folke/trouble.nvim",
@@ -340,11 +339,12 @@ local plugins = {
   {
     "zeioth/garbage-day.nvim",
     dependencies = "neovim/nvim-lspconfig",
-    event = "BufEnter",
+    event = "LspAttach",
     opts = {},
   },
   {
     "folke/neodev.nvim",
+    event = "LspAttach",
     opts = {},
     config = function()
       require("neodev").setup {
@@ -435,16 +435,6 @@ local plugins = {
   { "kevinhwang91/nvim-bqf", ft = "qf" },
   { "yorickpeterse/nvim-pqf", ft = "qf" },
   {
-    "antosha417/nvim-lsp-file-operations",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-tree.lua",
-    },
-    config = function()
-      require("lsp-file-operations").setup()
-    end,
-  },
-  {
     "felpafel/inlay-hint.nvim",
     event = "LspAttach",
     opts = {
@@ -493,6 +483,13 @@ local plugins = {
         noremap = true,
       },
     },
+  },
+  {
+    "Wansmer/symbol-usage.nvim",
+    event = "LspAttach", -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
+    config = function()
+      require("symbol-usage").setup()
+    end,
   },
 }
 
