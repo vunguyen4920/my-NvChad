@@ -435,13 +435,6 @@ local plugins = {
   { "kevinhwang91/nvim-bqf", ft = "qf" },
   { "yorickpeterse/nvim-pqf", ft = "qf" },
   {
-    "felpafel/inlay-hint.nvim",
-    event = "LspAttach",
-    opts = {
-      virt_text_pos = "inline",
-    },
-  },
-  {
     "vuki656/package-info.nvim",
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {},

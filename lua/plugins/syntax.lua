@@ -32,13 +32,14 @@ local plugins = {
     "windwp/nvim-ts-autotag",
     event = "InsertEnter",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    config = function()
+    opts = {
+      enable_close = true, -- Auto close tags
+      enable_rename = true, -- Auto rename pairs of tags
+      enable_close_on_slash = true, -- Auto close on trailing </
+    },
+    config = function(_, opts)
       require("nvim-ts-autotag").setup {
-        opts = {
-          enable_close = true, -- Auto close tags
-          enable_rename = true, -- Auto rename pairs of tags
-          enable_close_on_slash = true, -- Auto close on trailing </
-        },
+        opts,
       }
 
       vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {

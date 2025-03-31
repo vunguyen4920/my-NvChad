@@ -7,19 +7,9 @@ local on_attach = nvlsp.on_attach
 local on_init = nvlsp.on_init
 local capabilities = nvlsp.capabilities
 
--- LSP INLAY HINT
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(args)
-    local bufnr = args.buf ---@type number
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client and client.supports_method "textDocument/inlayHint" then
-      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-      vim.keymap.set("n", "<leader>i", function()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = bufnr }, { bufnr = bufnr })
-      end, { buffer = bufnr, desc = "[I]nlayHints Toggle" })
-    end
-  end,
-})
+vim.diagnostic.config {
+  virtual_text = { current_line = true },
+}
 
 local lspconfig = require "lspconfig"
 local servers = {
@@ -160,39 +150,6 @@ lspconfig.vuels.setup {
 
 -- typescript
 lspconfig.vtsls.setup {
-  on_attach = function(_, bufnr)
-    on_attach(_, bufnr)
-
-    vim.keymap.set("n", "<A-o>", function()
-      local params = {
-        command = "typescript.organizeImports",
-        arguments = { vim.api.nvim_buf_get_name(0) },
-        title = "",
-      }
-      vim.lsp.buf.execute_command(params)
-    end, { buffer = bufnr, desc = "Organize Imports" })
-
-    vim.keymap.set("n", "gD", function()
-      local positionParams = vim.lsp.util.make_position_params()
-      local params = {
-        command = "typescript.goToSourceDefinition",
-        arguments = { positionParams.textDocument.uri, positionParams.position },
-        open = true,
-      }
-      vim.lsp.buf.execute_command(params)
-    end, { buffer = bufnr, desc = "Goto Source Definition" })
-
-    vim.keymap.set("n", "gR", function()
-      local params = {
-        command = "typescript.findAllFileReferences",
-        arguments = { vim.uri_from_bufnr(0) },
-        open = true,
-      }
-      vim.lsp.buf.execute_command(params)
-    end, { buffer = bufnr, desc = "Goto Source Definition" })
-  end,
-  on_init = on_init,
-  capabilities = capabilities,
   settings = {
     vtsls = {
       complete_function_calls = true,
