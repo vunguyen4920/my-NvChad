@@ -8,7 +8,6 @@ M.base46 = {
   theme = "tokyodark",
 
   integrations = {
-    "dap",
     "diffview",
     "git-conflict",
     "neogit",

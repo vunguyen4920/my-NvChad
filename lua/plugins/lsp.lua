@@ -15,7 +15,6 @@ local plugins = {
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim" },
-    event = "VeryLazy",
     opts = {
       ensure_installed = {
         -- defaults
@@ -77,7 +76,6 @@ local plugins = {
   {
     "zapling/mason-conform.nvim",
     dependencies = { "williamboman/mason.nvim" },
-    event = "VeryLazy",
     opts = {
       ensure_installed = {
         -- defaults
@@ -112,7 +110,6 @@ local plugins = {
   {
     "rshkarin/mason-nvim-lint",
     dependencies = { "williamboman/mason.nvim" },
-    event = "VeryLazy",
     opts = {
       ensure_installed = {
         -- defaults
@@ -131,110 +128,6 @@ local plugins = {
         "ktlint",
       },
     },
-  },
-  {
-    "mfussenegger/nvim-dap",
-    event = "LspAttach",
-    opts = {},
-    config = function()
-      require "configs.dap"
-      dofile(vim.g.base46_cache .. "dap")
-    end,
-    keys = function()
-      local dap = require "dap"
-      local dapui = require "dapui"
-
-      return {
-        {
-          "<leader>ds",
-          function()
-            dap.continue()
-            dapui.toggle {}
-          end,
-          desc = "DAP Start",
-        },
-        {
-          "<leader>dc",
-          function()
-            dap.continue()
-          end,
-          desc = "DAP Continue",
-        },
-        {
-          "<leader>do",
-          function()
-            dap.step_over()
-          end,
-          desc = "DAP Step Over",
-        },
-        {
-          "<leader>di",
-          function()
-            dap.step_into()
-          end,
-          desc = "DAP Step Into",
-        },
-        {
-          "<leader>du",
-          function()
-            dap.step_out()
-          end,
-          desc = "DAP Step Out",
-        },
-        {
-          "<leader>db",
-          function()
-            dap.toggle_breakpoint()
-          end,
-          desc = "DAP Toggle Debug breakpoint",
-        },
-        {
-          "<leader>dB",
-          function()
-            dap.set_breakpoint(nil, nil, vim.fn.input "Log point message: ")
-          end,
-          desc = "DAP Set Debug breakpoint with message",
-        },
-        {
-          "<leader>de",
-          function()
-            dap.clear_breakpoints()
-            dapui.toggle {}
-            dap.terminate()
-          end,
-          desc = "DAP end",
-        },
-      }
-    end,
-  },
-  {
-    "jay-babu/mason-nvim-dap.nvim",
-    dependencies = { "williamboman/mason.nvim" },
-    event = "VeryLazy",
-    opts = {
-      ensure_installed = {
-        -- defaults
-
-        -- web-dev
-        "firefox",
-
-        -- general
-        "js",
-        "javadbg",
-        "javatest",
-        "kotlin",
-      },
-    },
-  },
-  { "rcarriga/nvim-dap-ui", event = "LspAttach", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
-  { "theHamsta/nvim-dap-virtual-text", event = "LspAttach", dependencies = { "mfussenegger/nvim-dap" } },
-  {
-    "nvim-telescope/telescope-dap.nvim",
-    event = "LspAttach",
-    dependencies = { "mfussenegger/nvim-dap" },
-    config = function()
-      require("telescope").load_extension "dap"
-    end,
   },
   {
     "dmmulroy/ts-error-translator.nvim",
@@ -348,7 +241,7 @@ local plugins = {
     opts = {},
     config = function()
       require("neodev").setup {
-        library = { enabled = true, runtime = true, plugins = { "nvim-dap-ui" }, types = true },
+        library = { enabled = true, runtime = true, types = true },
         setup_jsonls = true,
         lspconfig = true,
         pathStrict = true,

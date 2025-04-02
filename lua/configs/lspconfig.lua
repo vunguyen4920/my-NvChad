@@ -27,7 +27,6 @@ local servers = {
   "jsonls",
   "kotlin_language_server",
   "lemminx",
-  "lua_ls",
   "marksman",
   "mdx_analyzer",
   "prismals",
@@ -49,40 +48,6 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
-
-lspconfig.lua_ls.setup {
-  on_init = on_init,
-  capabilities = capabilities,
-  on_attach = on_attach,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" },
-      },
-      codeLens = {
-        enable = true,
-      },
-      workspace = {
-        checkThirdParty = false,
-        library = {
-          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-          [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-          [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
-          [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
-        },
-        maxPreload = 100000,
-        preloadFileSize = 10000,
-      },
-      hint = {
-        enable = true,
-        setType = false,
-        paramType = true,
-        semicolon = "Disable",
-        arrayIndex = "Disable",
-      },
-    },
-  },
-}
 
 lspconfig.eslint.setup {
   on_init = on_init,
