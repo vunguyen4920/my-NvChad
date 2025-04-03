@@ -53,7 +53,24 @@ local plugins = {
       use_git_branch = true,
       should_save = function()
         -- Do not save if the alpha dashboard is the current filetype
-        if vim.bo.filetype == "nvdash" then
+        local ignored_filetypes = {
+          ["nvdash"] = true,
+          ["Avante"] = true,
+          ["AvanteInput"] = true,
+          ["AvanteSelectedFiles"] = true,
+          ["NeogitPopup"] = true,
+          ["NeogitStatus"] = true,
+          ["NvimTree"] = true,
+          ["Outline"] = true,
+          ["harpoon"] = true,
+          ["lazy"] = true,
+          ["mason"] = true,
+          ["netrw"] = true,
+          ["oil"] = true,
+          ["qf"] = true,
+          ["spectre_panel"] = true,
+        }
+        if ignored_filetypes[vim.bo.filetype] then
           return false
         end
         return true
@@ -68,33 +85,6 @@ local plugins = {
           },
         },
       }
-
-      local ignored_filetypes = {
-        ["qf"] = true,
-        ["netrw"] = true,
-        ["NvimTree"] = true,
-        ["lazy"] = true,
-        ["mason"] = true,
-        ["oil"] = true,
-        ["harpoon"] = true,
-        ["spectre_panel"] = true,
-        ["NeogitPopup"] = true,
-        ["NeogitStatus"] = true,
-        ["Outline"] = true,
-        ["Avante"] = true,
-        ["AvanteInput"] = true,
-        ["AvanteSelectedFiles"] = true,
-      }
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "PersistedSavePre",
-        callback = function()
-          for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-            if ignored_filetypes[vim.bo[buf].filetype] then
-              vim.api.nvim_buf_delete(buf, { force = true })
-            end
-          end
-        end,
-      })
     end,
     keys = function()
       return {

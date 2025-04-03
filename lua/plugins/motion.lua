@@ -112,6 +112,27 @@ local plugins = {
           desc = "Harpoon Select 4",
         },
         {
+          "<M-z>",
+          function()
+            harpoon:list():select(5)
+          end,
+          desc = "Harpoon Select 5",
+        },
+        {
+          "<M-x>",
+          function()
+            harpoon:list():select(6)
+          end,
+          desc = "Harpoon Select 6",
+        },
+        {
+          "<M-c>",
+          function()
+            harpoon:list():select(7)
+          end,
+          desc = "Harpoon Select 7",
+        },
+        {
           "<C-[>",
           function()
             harpoon:list():prev()
