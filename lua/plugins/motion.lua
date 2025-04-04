@@ -13,26 +13,30 @@ local plugins = {
         },
       },
     },
-    keys = {
-      {
-        mode = { "n", "x", "o" },
-        "s",
-        function()
-          require("flash").jump()
-        end,
-        desc = "Flash Jump",
-      },
-      {
-        mode = { "n", "x", "o" },
-        "Z",
-        function()
-          require("flash").jump {
-            pattern = vim.fn.expand "<cword>",
-          }
-        end,
-        desc = "Flash Remote",
-      },
-    },
+    keys = function()
+      local flash = require "flash"
+
+      return {
+        {
+          mode = { "n", "x", "o" },
+          "s",
+          function()
+            flash.jump()
+          end,
+          desc = "Flash Jump",
+        },
+        {
+          mode = { "n", "x", "o" },
+          "Z",
+          function()
+            flash.jump {
+              pattern = vim.fn.expand "<cword>",
+            }
+          end,
+          desc = "Flash Remote",
+        },
+      }
+    end,
   },
   {
     "ThePrimeagen/harpoon",

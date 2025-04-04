@@ -1,3 +1,16 @@
+local M = {}
+
+---@param increment boolean
+---@param g? boolean
+function M.dial(increment, g)
+  local mode = vim.fn.mode(true)
+  -- Use visual commands for VISUAL 'v', VISUAL LINE 'V' and VISUAL BLOCK '\22'
+  local is_visual = mode == "v" or mode == "V" or mode == "\22"
+  local func = (increment and "inc" or "dec") .. (g and "_g" or "_") .. (is_visual and "visual" or "normal")
+  local group = vim.g.dials_by_ft[vim.bo.filetype] or "default"
+  return require("dial.map")[func](group)
+end
+
 local plugins = {
   {
     "kylechui/nvim-surround",
@@ -60,6 +73,17 @@ local plugins = {
     end,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     event = "BufReadPost",
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    opts = {
+      multiline_threshold = 1,
+    },
+    config = function(_, opts)
+      require("treesitter-context").setup(opts)
+    end,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    event = "BufReadPost",
     keys = {
       {
         "<leader>tc",
@@ -67,26 +91,6 @@ local plugins = {
         desc = "Treesitter Context Toggle",
       },
     },
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    opts = {
-      max_lines = 3,
-      multiline_threshold = 1,
-    },
-    config = function()
-      require("treesitter-context").setup()
-    end,
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = "BufReadPost",
-  },
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    opts = {},
-    config = function()
-      vim.g.skip_ts_context_commentstring_module = true
-    end,
-    event = "BufReadPost",
   },
   {
     "numToStr/Comment.nvim",
@@ -103,7 +107,14 @@ local plugins = {
     event = "BufReadPost",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      "JoosepAlviste/nvim-ts-context-commentstring",
+      {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        opts = {},
+        config = function()
+          vim.g.skip_ts_context_commentstring_module = true
+        end,
+        event = "BufReadPost",
+      },
     },
   },
   {
@@ -117,7 +128,7 @@ local plugins = {
     desc = "Better Yank/Paste",
     event = "BufEnter",
     opts = {
-      highlight = { timer = 150 },
+      highlight = { timer = 100 },
     },
     keys = {
       {
@@ -183,23 +194,59 @@ local plugins = {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   {
-    "nat-418/boole.nvim",
+    "monaqa/dial.nvim",
     event = "BufEnter",
-    opts = {
-      mappings = {
-        increment = "<C-a>",
-        decrement = "<C-x>",
+    keys = {
+      {
+        "<C-a>",
+        function()
+          return M.dial(true)
+        end,
+        expr = true,
+        desc = "Increment",
+        mode = { "n", "v" },
       },
-      -- User defined loops
-      additions = {
-        { "isEnable", "isDisable" },
+      {
+        "<C-x>",
+        function()
+          return M.dial(false)
+        end,
+        expr = true,
+        desc = "Decrement",
+        mode = { "n", "v" },
       },
-      allow_caps_additions = {
-        { "enable", "disable" },
-        { "foo", "bar" },
-        { "tic", "tac", "toe" },
+      {
+        "g<C-a>",
+        function()
+          return M.dial(true, true)
+        end,
+        expr = true,
+        desc = "Increment",
+        mode = { "n", "v" },
+      },
+      {
+        "g<C-x>",
+        function()
+          return M.dial(false, true)
+        end,
+        expr = true,
+        desc = "Decrement",
+        mode = { "n", "v" },
       },
     },
+    opts = function()
+      return require "configs.dial"
+    end,
+    config = function(_, opts)
+      -- copy defaults to each group
+      for name, group in pairs(opts.groups) do
+        if name ~= "default" then
+          vim.list_extend(group, opts.groups.default)
+        end
+      end
+      require("dial.config").augends:register_group(opts.groups)
+      vim.g.dials_by_ft = opts.dials_by_ft
+    end,
   },
   {
     "hiphish/rainbow-delimiters.nvim",

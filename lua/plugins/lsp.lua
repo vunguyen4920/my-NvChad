@@ -327,49 +327,6 @@ local plugins = {
   },
   { "kevinhwang91/nvim-bqf", ft = "qf" },
   { "yorickpeterse/nvim-pqf", ft = "qf" },
-  {
-    "vuki656/package-info.nvim",
-    dependencies = { "MunifTanjim/nui.nvim" },
-    opts = {},
-    keys = {
-      {
-        "<leader>pks",
-        "<cmd>lua require('package-info').show({ force = true })<cr>",
-        silent = true,
-        noremap = true,
-      },
-      {
-        "<leader>pkh",
-        "<cmd>lua require('package-info').hide()<cr>",
-        silent = true,
-        noremap = true,
-      },
-      {
-        "<leader>pku",
-        "<cmd>lua require('package-info').update()<cr>",
-        silent = true,
-        noremap = true,
-      },
-      {
-        "<leader>pkd",
-        "<cmd>lua require('package-info').delete()<cr>",
-        silent = true,
-        noremap = true,
-      },
-      {
-        "<leader>pki",
-        "<cmd>lua require('package-info').install()<cr>",
-        silent = true,
-        noremap = true,
-      },
-      {
-        "<leader>pkp",
-        "<cmd>lua require('package-info').change_version()<cr>",
-        silent = true,
-        noremap = true,
-      },
-    },
-  },
 }
 
 return plugins

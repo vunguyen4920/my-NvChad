@@ -255,4 +255,4 @@ local random_header = {
   },
 }
 
-return random_header[math.random(1, #random_header)]
+return random_header[math.random(#random_header)]
