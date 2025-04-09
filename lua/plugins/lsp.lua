@@ -13,53 +13,6 @@ local plugins = {
     version = false, -- last release is way too old
   },
   {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim" },
-    opts = {
-      ensure_installed = {
-        -- defaults
-        "lua_ls",
-
-        -- web-dev
-        "css_variables",
-        "cssls",
-        "cssmodules_ls",
-        "emmet_ls",
-        "eslint",
-        "html",
-        "jsonls",
-        "lemminx",
-        "somesass_ls",
-        "svelte",
-        "tailwindcss",
-        "volar",
-        "vuels",
-        "yamlls",
-        "astro",
-
-        -- db
-        "graphql",
-        "prismals",
-
-        -- documentation
-        "marksman",
-        "mdx_analyzer",
-
-        -- general purpose
-        "jdtls",
-        "kotlin_language_server",
-        "taplo",
-        "vtsls",
-
-        -- devops
-        "docker_compose_language_service",
-        "dockerls",
-        "gradle_ls",
-        "groovyls",
-      },
-    },
-  },
-  {
     "neovim/nvim-lspconfig",
     event = "User FilePost",
     dependencies = { "mfussenegger/nvim-jdtls", "b0o/SchemaStore.nvim" },
@@ -74,30 +27,6 @@ local plugins = {
     opts = require "configs.conform",
   },
   {
-    "zapling/mason-conform.nvim",
-    dependencies = { "williamboman/mason.nvim" },
-    opts = {
-      ensure_installed = {
-        -- defaults
-        "stylua",
-
-        -- documentation
-        "markdownlint",
-
-        -- web-dev
-        "prettier",
-        "eslint_d",
-
-        -- general
-        "google-java-format",
-        "ktlint",
-
-        -- devops
-        "npm-groovy-lint",
-      },
-    },
-  },
-  {
     "mfussenegger/nvim-lint",
     event = {
       "BufReadPre",
@@ -106,28 +35,6 @@ local plugins = {
     config = function()
       require "configs.lint"
     end,
-  },
-  {
-    "rshkarin/mason-nvim-lint",
-    dependencies = { "williamboman/mason.nvim" },
-    opts = {
-      ensure_installed = {
-        -- defaults
-        "selene",
-
-        -- documentation
-        "markdownlint",
-
-        -- web-dev
-
-        -- devops
-        "npm-groovy-lint",
-
-        -- general
-        "checkstyle",
-        "ktlint",
-      },
-    },
   },
   {
     "dmmulroy/ts-error-translator.nvim",

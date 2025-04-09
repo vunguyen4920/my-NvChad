@@ -36,6 +36,7 @@ M.nvdash = {
   header = require "headers",
 
   buttons = {
+    { txt = " ", no_gap = false, rep = true },
     { txt = "  Previous Sessions", keys = "sr", cmd = "SessionLoad" },
     { txt = "  Find File", keys = "ff", cmd = "Telescope find_files" },
     { txt = "  Recent Files", keys = "fo", cmd = "Telescope oldfiles" },

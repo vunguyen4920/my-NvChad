@@ -101,24 +101,9 @@ local plugins = {
     keys = function()
       return {
         {
-          "<leader>st",
-          "<cmd>SessionToggle<CR>",
-          { desc = "[S]ession [T]oggle" },
-        },
-        {
           "<leader>sr",
           "<cmd>SessionLoad<CR>",
           { desc = "[S]ession [R]estore" },
-        },
-        {
-          "<leader>sl",
-          "<cmd>SessionLoadLast<CR>",
-          { desc = "[S]ession Load [L]ast" },
-        },
-        {
-          "<leader>sx",
-          "<cmd>SessionDelete<CR>",
-          { desc = "[S]ession Delete" },
         },
         {
           "<leader>ss",

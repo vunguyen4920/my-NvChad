@@ -15,7 +15,7 @@ local plugins = {
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "InsertEnter",
+    event = "BufReadPost",
     config = function()
       require("nvim-surround").setup {
         -- Configuration here, or leave empty to use defaults
@@ -161,11 +161,11 @@ local plugins = {
   {
     "lewis6991/spaceless.nvim",
     opts = {},
-    event = "BufEnter",
+    event = "BufReadPost",
   },
   {
     "kevinhwang91/nvim-ufo",
-    event = "BufEnter",
+    event = "BufReadPre",
     dependencies = {
       "kevinhwang91/promise-async",
     },
@@ -189,7 +189,7 @@ local plugins = {
   },
   {
     "davidmh/mdx.nvim",
-    event = "BufEnter *.mdx",
+    event = "BufRead *.mdx",
     config = true,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
@@ -256,6 +256,7 @@ local plugins = {
     end,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
+  { "fei6409/log-highlight.nvim", event = "BufRead *.log", opts = {} },
 }
 
 return plugins
