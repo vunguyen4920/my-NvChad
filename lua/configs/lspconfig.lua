@@ -51,7 +51,7 @@ local servers = {
   "tailwindcss",
   "taplo",
   "vtsls",
-  "volar", -- vue >= 2.7 & vue >= 3.0
+  -- "volar", -- vue >= 2.7 & vue >= 3.0
   "vuels", -- vue < 2.7
   "yamlls",
 }

@@ -25,7 +25,7 @@ local plugins = {
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
-      image = { enabled = false },
+      image = { enabled = true, doc = { inline = false } },
       indent = { enabled = true },
       input = { enabled = true },
       rename = { enabled = true },
