@@ -2,6 +2,20 @@
 require("nvchad.configs.lspconfig").defaults()
 local nvlsp = require "nvchad.configs.lspconfig"
 
+-- LSP INLAY HINT
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local bufnr = args.buf ---@type number
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client.supports_method(client, "textDocument/inlayHint", bufnr) then
+      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+      vim.keymap.set("n", "<leader>i", function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = bufnr }, { bufnr = bufnr })
+      end, { buffer = bufnr, desc = "[I]nlayHints Toggle" })
+    end
+  end,
+})
+
 -- EXAMPLE
 local on_attach = nvlsp.on_attach
 local on_init = nvlsp.on_init
@@ -28,6 +42,7 @@ local servers = {
   "jsonls",
   "kotlin_language_server",
   "lemminx",
+  "lua_ls",
   "marksman",
   "mdx_analyzer",
   "prismals",
@@ -35,9 +50,9 @@ local servers = {
   "svelte",
   "tailwindcss",
   "taplo",
-  -- "volar", -- vue >= 2.7 & vue >= 3.0
-  "vuels", -- vue < 2.7
   "vtsls",
+  "volar", -- vue >= 2.7 & vue >= 3.0
+  "vuels", -- vue < 2.7
   "yamlls",
 }
 
@@ -49,6 +64,30 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+lspconfig.lua_ls.setup {
+  settings = {
+    Lua = {
+      hint = {
+        enable = true,
+      },
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = {
+          vim.fn.expand "$VIMRUNTIME/lua",
+          vim.fn.expand "$VIMRUNTIME/lua/vim/lsp",
+          vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
+          vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
+          "${3rd}/luv/library",
+        },
+        maxPreload = 100000,
+        preloadFileSize = 10000,
+      },
+    },
+  },
+}
 
 lspconfig.eslint.setup {
   on_init = on_init,
@@ -151,12 +190,12 @@ lspconfig.vtsls.setup {
         completeFunctionCalls = true,
       },
       inlayHints = {
-        enumMemberValues = { enabled = true },
-        functionLikeReturnTypes = { enabled = true },
-        parameterNames = { enabled = "literals" },
+        parameterNames = { enabled = "all" },
         parameterTypes = { enabled = true },
+        variableTypes = { enabled = true },
         propertyDeclarationTypes = { enabled = true },
-        variableTypes = { enabled = false },
+        functionLikeReturnTypes = { enabled = true },
+        enumMemberValues = { enabled = true },
       },
     },
   },
