@@ -88,49 +88,49 @@ local plugins = {
           desc = "Harpoon [Q]uick Menu",
         },
         {
-          "<M-q>",
+          "<C-1>",
           function()
             harpoon:list():select(1)
           end,
           desc = "Harpoon Select 1",
         },
         {
-          "<M-w>",
+          "<C-2>",
           function()
             harpoon:list():select(2)
           end,
           desc = "Harpoon Select 2",
         },
         {
-          "<M-e>",
+          "<C-3>",
           function()
             harpoon:list():select(3)
           end,
           desc = "Harpoon Select 3",
         },
         {
-          "<M-r>",
+          "<C-4>",
           function()
             harpoon:list():select(4)
           end,
           desc = "Harpoon Select 4",
         },
         {
-          "<M-z>",
+          "<C-5>",
           function()
             harpoon:list():select(5)
           end,
           desc = "Harpoon Select 5",
         },
         {
-          "<M-x>",
+          "<C-6>",
           function()
             harpoon:list():select(6)
           end,
           desc = "Harpoon Select 6",
         },
         {
-          "<M-c>",
+          "<C-7>",
           function()
             harpoon:list():select(7)
           end,
